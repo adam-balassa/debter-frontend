@@ -1,0 +1,13 @@
+<div class="main-container">
+  <div class="cont">
+    <div class="selected-item hoverable"[ngClass]="{collapsed: collapsed}" (click)="collapse()">
+        <span>{{ values[selectedItem] }}</span>
+        <i class="material-icons" [ngClass]="{collapsed: collapsed}">expand_more</i>
+      </div>
+      <div class="items" *ngIf="collapsed" @collapse>
+        <div class="item" *ngFor="let text of values; let i = index" (click)="newValue(i)">
+          <div>{{ text }}</div>
+        </div>
+      </div>
+  </div> 
+</div>

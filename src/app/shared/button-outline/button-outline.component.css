@@ -1,0 +1,23 @@
+button{
+    outline: 0;
+    height: 2em;
+    border-radius: 1em;
+    padding: 0 1em;
+    font-weight: 300;
+    background-color: var(--white);
+    color: var(--pink);
+    border: 1px solid var(--pink);
+    cursor: pointer;
+    transition: all ease-in-out .12s;
+    display: flex;
+}
+
+button > span{
+    font-size: 0.8em;
+    white-space: nowrap;
+}
+
+button:hover{
+    background-color: var(--pink);
+    color:var(--white);
+}

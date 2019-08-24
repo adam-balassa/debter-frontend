@@ -1,0 +1,18 @@
+
+<ng-template [(clickOut)]="displayed">
+  <div class="big-container"@disappear>
+    <div class="inner-container" @appear>
+      <div class="message-box" >
+        <div class="message-header" [ngClass]="{alert: alert}">
+            <span>{{ header }}</span>
+        </div>
+        <div class="message-content">
+          {{ content }}
+        </div>
+        <div class="footer">
+            <app-button (click)="displayed = false">Ok</app-button>
+        </div>
+      </div>      
+    </div>
+  </div>
+</ng-template>

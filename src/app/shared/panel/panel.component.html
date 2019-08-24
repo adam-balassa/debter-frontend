@@ -1,0 +1,20 @@
+<div 
+    class="panel"  
+    (mouseenter)="hover=true" 
+    (mouseleave)="hover=false"
+    [ngStyle]="{color: hover ? 'var(--dark-'+ (content.color ? 'pink' : 'blue') +')' : 'black'}"
+    >
+    <div class="panel-title" [ngStyle]="{'background-color': 'var(--'+ (content.color ? 'pink' : 'blue') +')'}">
+        <span>{{ content.title }}</span>
+    </div>
+    <div class="panel-description">
+        <span>{{ content.description }}</span>
+    </div>
+    <div class="panel-footer">
+        <app-button 
+            [routerLink]="content.redirectUrl" 
+            [color]="'var(--'+ (content.color ? 'pink' : 'blue') +')'"
+            [hover]="'var(--dark-'+ (content.color ? 'pink' : 'blue') +')'"
+        >{{ content.title }} <i class="fa fa-arrow-right"></i> </app-button>
+    </div>
+</div>

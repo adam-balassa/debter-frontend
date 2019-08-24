@@ -1,0 +1,64 @@
+.row-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: all ease-in-out .2s;
+}
+.row-cells{
+    padding: 0.6rem 1.5rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    z-index: 3;
+}
+.collapsed.row-cells{
+    color: var(--dark-blue);
+    box-shadow: 0px 3px 10px -3px rgba(0, 0, 0, 0.3);
+}
+.separator{
+    position: absolute;
+    height: 100%;
+    border-bottom: 1px solid var(--white);
+    width: 80%;
+    top: 0;
+    box-sizing: content-box;
+    z-index: 1;
+}
+.collapsable{
+    background-color: var(--white);
+    overflow: hidden;
+    width: 100%;
+    z-index: 2;
+}
+.collapse-content{
+    padding: 2rem;
+}
+
+:host.table-header .row-container{
+    background-color: var(--pink)!important;
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+:host.table-header table-cell{
+    cursor: pointer;
+    transition: all ease-in-out .12s;
+}
+:host.table-header table-cell:hover, :host.table-header table-cell.clicked-cell{
+    color: white;
+}
+
+:host.table-header table-cell.clicked-cell{
+    color: white;
+    font-weight: 800;
+}
+
+:host.table-footer .row-container{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.material-icons{
+    margin: 0;
+}

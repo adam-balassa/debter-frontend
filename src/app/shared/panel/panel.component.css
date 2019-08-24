@@ -1,0 +1,47 @@
+.panel{
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    background: white;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all ease-in-out .12s;
+}
+
+.panel:hover{
+    color: var(--dark-pink);
+}
+
+.panel:hover app-button .fa{
+    animation: pop .4s;
+}
+
+.panel-title{
+    width: 100%;
+    padding: 0.5rem 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--white);
+    background-color: var(--pink);
+}
+
+.panel-description{
+    padding: 1rem 2rem;
+    width: 100%;
+}
+
+.panel-footer{
+    display: flex;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}
+
+app-button .fa {
+    margin-left: 0.8rem;
+}
+
+@keyframes pop {
+    0% { transform: translateX(0) }
+    50% { transform: translateX(0.8rem) }
+    100% { transform: translateX(0) }
+}

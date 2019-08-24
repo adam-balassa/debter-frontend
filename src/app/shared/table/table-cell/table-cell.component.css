@@ -1,0 +1,20 @@
+.cell{
+    padding: 0.2rem 1rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+:host{
+    min-width: 0;
+}
+.pink{
+    color: var(--dark-pink);
+}
+.blue{
+    color: var(--dark-blue);
+}
+@media screen and (max-width: 450px){
+    .cell{
+        padding: 0.2rem;
+    }
+}

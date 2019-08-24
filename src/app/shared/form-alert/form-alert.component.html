@@ -1,0 +1,21 @@
+<div class="d-flex form-group w-100 align-items-center" style="position: relative">
+    <div class="input-holder" [ngClass]="{shrinked: iconDisplayed}">
+      <ng-content></ng-content>
+    </div>
+    <div 
+      class="alert-container" 
+      *ngIf="iconDisplayed"
+      (mouseenter)="displayed=true"
+      (mouseleave)="displayed=false">
+        <span class="icon" #icon>!</span>
+        <div 
+          class="alert-dialog" 
+          *ngIf="displayed" 
+          [@displayed]="'displayed'" >
+          <span>
+            {{ msg }}
+          </span>
+        </div>
+    </div>
+</div>
+

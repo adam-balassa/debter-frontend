@@ -1,0 +1,22 @@
+<div class="row-container">
+  <div class="separator"></div>
+  <div class="row-cells" (click)="collapse()"  [ngClass]="{hoverable: collapsable, collapsed: collapsed}">
+      <table-cell 
+        *ngFor="let cell of rowCells; let i = index" 
+        [config]="cellTemplates[i]" 
+        (click)="cellClicked(i)"
+        [ngClass]="{'clicked-cell': clickedCell === i}">
+          {{ cell }}
+      </table-cell>
+      <table-cell *ngIf="collapsable" [config]="{align: 'right', ratio: 1}">
+        <div class="d-flex align-items-center details-container">
+            <span></span><i class="material-icons">expand_more</i>
+        </div>
+      </table-cell>
+  </div>
+  <div *ngIf="collapsed" class="collapsable" @appear @disappear>
+    <div class="collapse-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
