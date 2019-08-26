@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 
 import { ButtonComponent } from './button/button.component';
 import { ButtonOutlineComponent } from './button-outline/button-outline.component';
-import { FormAlertComponent } from "./form-alert/form-alert.component";
+import { FormAlertComponent } from './form-alert/form-alert.component';
 import { PopupBoxComponent } from './popup-box/popup-box.component';
 import { ClickOutsideDirective } from './click-outside.directive';
 import { AppearAnimation } from './animations/appear.animation';

@@ -1,0 +1,29 @@
+<header>
+  <app-header-phone [items]="[
+    {title: 'Home', routerLink: '/'},
+    {title: 'About', routerLink: '/about'},
+    {title: 'Contact', routerLink: '/contact'}
+  ]">
+    <app-button routerLink="/login">
+      Continue to Debter
+    </app-button>
+  </app-header-phone>
+  <div class="header-content">
+    <div class="home">
+      <a routerLink="/login" class="hoverable">Debter</a>
+    </div>
+    <div class="navigation">
+      <div class="pages">
+        <app-header-item url="/">Home</app-header-item>
+        <app-header-item url="/about">About</app-header-item>
+        <app-header-item url="/contact">Contact</app-header-item>
+      </div>
+      <div class="continue-to-app-container">
+        <app-button routerLink="/login">
+          Continue to Debter
+        </app-button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="header-placeholder"></div>

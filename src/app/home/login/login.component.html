@@ -1,0 +1,42 @@
+<div class="page">
+    <h1>Enter room id</h1>
+    <form [formGroup]="form">
+        <div class="d-flex form-group w-100 justify-content-center">
+            <app-form-alert [alerted]="message !== ''" [message]="message">
+                <input 
+                    type="text" 
+                    class="form-control text-input" 
+                    name="roomIdInput"
+                    formControlName="roomIdInput"
+                    placeholder="Room id..."
+                    id="roomId"
+                    aria-describedby="roomIdLabel">
+                    <span style="width: 1em"></span>
+                    <app-button color="#65cbc3" hover="#4c7783" [absolute]="true" (click)="popup = !popup">
+                        <i class="fa fa-history"></i>
+                    </app-button>
+            </app-form-alert>
+            <app-popup-box 
+                [(displayed)]="popup"
+                [content]="{title: 'Previous rooms', content: projectIds}"
+                (textChosen)="onIdChosen($event)"
+            >
+            </app-popup-box>
+        </div>
+        <div class="w-100 form-group d-flex justify-content-center">
+            <app-button 
+                [disabled]="form.invalid" 
+                color="#65cbc3"
+                hover="#4c7783" 
+                (click)="join()">Join room!
+            </app-button>
+        </div>
+        <div class="d-flex align-items-center flex-column">
+            <span class="form-group">or</span>
+            <app-button-outline color="#e67b82"
+            routerLink="/create"
+            >Create new room</app-button-outline>
+        </div>
+    </form>
+    <app-loading [loading]="loading"></app-loading>
+</div>
