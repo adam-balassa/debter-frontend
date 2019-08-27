@@ -6,6 +6,8 @@ import { ContactComponent } from './home/contact/contact.component';
 import { AboutComponent } from './home/about/about.component';
 import { LoginComponent } from './home/login/login.component';
 import { CreateComponent } from './home/create/create.component';
+import { CoreComponent } from './core/core.component';
+import { MainComponent } from './core/main/main.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'prefix', component: HomeComponent, children: [
@@ -14,6 +16,9 @@ const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'login', component: LoginComponent },
     { path: 'create', component: CreateComponent },
+  ]},
+  { path: ':projectId', pathMatch: 'prefix', component: CoreComponent, children: [
+    { path: '', pathMatch: 'full', component: MainComponent }
   ]}
 ];
 

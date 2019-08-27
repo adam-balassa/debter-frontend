@@ -15,11 +15,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HomeHeaderComponent } from './home/home-header/home-header.component';
 import { HomeHeaderItemComponent } from './home/home-header/home-header-item/home-header-item.component';
+import { HeaderComponent } from './core/header/header.component';
+import { HeaderItemComponent } from './core/header/header-item/header-item.component';
 import { IndexComponent } from './home/index/index.component';
 import { AboutComponent } from './home/about/about.component';
 import { ContactComponent } from './home/contact/contact.component';
 import { LoginComponent } from './home/login/login.component';
 import { CreateComponent } from './home/create/create.component';
+import { CoreComponent } from './core/core.component';
+import { MainComponent } from './core/main/main.component';
+import { PaginateComponent } from './core/main/paginate/paginate.component';
 registerLocaleData (localeHungary, 'hu');
 registerLocaleData (localeUS, 'en');
 
@@ -33,7 +38,12 @@ registerLocaleData (localeUS, 'en');
     AboutComponent,
     ContactComponent,
     LoginComponent,
-    CreateComponent
+    CreateComponent,
+    CoreComponent,
+    HeaderComponent,
+    HeaderItemComponent,
+    MainComponent,
+    PaginateComponent,
   ],
   imports: [
     BrowserModule,

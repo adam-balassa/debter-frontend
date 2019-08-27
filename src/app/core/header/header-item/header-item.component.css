@@ -1,0 +1,10 @@
+:host.active .item-container{
+    font-weight: 400;
+}
+.item-container{
+    text-transform: uppercase;
+    color: black;   
+    padding: .8rem;
+    margin: 0 .4em;
+    outline: 0;
+}

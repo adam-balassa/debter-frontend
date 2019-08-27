@@ -1,0 +1,45 @@
+<header>
+  <app-header-phone [items]="[
+    {title: 'Home', routerLink: '/project/' + 'BERLIN'},
+    {title: 'History', routerLink: '/project/' + 'BERLIN' + '/history'},
+    {title: 'Upload', routerLink: '/project/' + 'BERLIN' + '/upload'},
+    {title: 'Debts', routerLink: '/project/' + 'BERLIN' + '/debts'},
+    {title: 'Settings', routerLink: '/project/' + 'BERLIN' + '/settings'}
+  ]">
+  <app-button routerLink="/">
+    Exit {{ 'BERLIN' }}
+  </app-button>
+</app-header-phone>
+  <div class="header-content">
+    <div class="home">
+      <a [routerLink]="'/project/' + 'BERLIN'" class="hoverable">Debter</a>
+    </div>
+    <div class="navigation">
+      <div class="pages">
+        <app-header-item 
+          [routerLink]="'/project/' + 'BERLIN'"
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}"
+          >Home</app-header-item>
+        <app-header-item 
+          [routerLink]="'/project/' + 'BERLIN' + '/history'"
+          routerLinkActive="active" >History</app-header-item>
+        <app-header-item 
+          [routerLink]="'/project/' + 'BERLIN' + '/upload'"
+          routerLinkActive="active" >Upload</app-header-item>
+        <app-header-item 
+          [routerLink]="'/project/' + 'BERLIN' + '/debts'"
+          routerLinkActive="active">Debts</app-header-item>
+        <app-header-item 
+          [routerLink]="'/project/' + 'BERLIN' + '/settings'"
+          routerLinkActive="active" >Settings</app-header-item>
+      </div>
+      <div class="continue-to-app-container">
+        <app-button routerLink="/">
+            Exit {{ 'BERLIN' }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="header-placeholder"></div>

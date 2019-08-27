@@ -1,0 +1,16 @@
+<div class="pagination">
+  <div 
+    class="paginate" 
+    *ngFor="let page of pages; let i = index"
+    [ngStyle]="{ width:  60 / pages.length + 'vw'}"
+    (click)="redirect(page.url)">
+    <div class="paginate-content" [ngStyle]="{'border-right-width': (i == pages.length - 1 ? '0' : '1px')}">
+      <div class="icon-holder">
+        <i [class]="'fa fa-' + page.icon"></i>
+      </div>
+      <div class="text-holder">
+        <span> {{ page.title }} </span>
+      </div>
+    </div>
+  </div>
+</div>

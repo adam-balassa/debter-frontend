@@ -1,0 +1,54 @@
+<div class="main-image-holder">
+  <div class="main-image">
+    <img src="../../../../assets/images/main.jpg" alt="Main image">
+  </div>
+  <div class="project-title">
+    <span>{{ (project.room | async).name }}</span>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="pagination-holder">
+    <app-paginate></app-paginate>
+  </div>
+  <div class="placeholder"></div>
+  <div class="copy-holder">
+    <input type="text" class="project-id" [value]="(project.room | async).roomKey" #projectIdInput>
+    <div class="copy" (click)="copy()">
+      <i class="fa fa-clipboard"></i>
+      <span>Copy room id</span>
+    </div>
+  </div>
+  <div class="table-container">
+    <app-table>
+      <app-table-row 
+        class="table-header"
+        [cellsTemplate]="tableHeaderTemplate" 
+        [cells]="tableLabels"
+        [collapsable]="false">
+      </app-table-row>
+
+      <app-table-row 
+        *ngFor="let member of members" 
+        [cellsTemplate]="[
+          {align: 'left', ratio: 1}, 
+          {align: 'right', ratio: 2}, 
+          {align: 'right', ratio: 2, class: member.debt > 0 ? 'pink' : 'blue'}]" 
+        [cells]="[
+          member.name, 
+          {value: member.sum, currency: (project.room | async).mainCurrency } | valuePipe, 
+          {value: member.debt, currency: (project.room | async).mainCurrency } | valuePipe]" 
+        [collapsable]="false">
+      </app-table-row>
+
+      <app-table-row 
+        class="table-footer"
+        [cellsTemplate]="tableTemplate" 
+        [cells]="['&sum;', {value: sum, currency: (project.room | async).mainCurrency } | valuePipe, '']" 
+        [collapsable]="false">
+      </app-table-row>
+    </app-table>
+  </div>
+</div>
+<app-notification [(show)]="shown">{{ (project.room | async).roomKey }} copied to clipboard</app-notification>
+<app-loading [loading]="loading"></app-loading>

@@ -1,0 +1,41 @@
+div.paginate{
+    height: 100%;
+    cursor: pointer;
+    transition: all ease-in-out .2s;
+    padding: 2rem 0;
+    min-width: 10rem;
+}
+div.paginate-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    border-right: 1px solid rgba(0, 0, 0, .1);
+}
+div.paginate:hover{
+    background-color: rgba(0, 0, 0, .02);
+    color: var(--blue);
+}
+div.paginate:hover .icon-holder{
+    /* font-size: 2.3em; */
+}
+div.pagination{
+    border-radius: 1rem;
+    box-shadow: 3px 3px 25px -8px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    height: 100%;
+    overflow: hidden;
+}
+.icon-holder{
+    font-size: 2rem;
+    transition: font-size ease-in-out .2s;
+}
+.icon-holder i{
+    margin: 1rem;
+}
+.text-holder{
+    text-align: center;
+    font-size: 1.2em;
+}

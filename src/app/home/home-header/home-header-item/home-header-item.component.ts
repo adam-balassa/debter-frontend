@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
 @Component({
-  selector: 'app-header-item',
+  selector: 'app-home-header-item',
   templateUrl: './home-header-item.component.html',
   styleUrls: ['./home-header-item.component.css']
 })
