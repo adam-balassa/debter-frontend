@@ -1,0 +1,66 @@
+<main>
+    <div class="upload-form-container">
+        <div class="upload-status-tracker-container">
+            <div class="upload-status-tracker">
+                <div *ngFor="let slide of slides; let i = index" [ngClass]="{active: i == activeSlide}">
+                    <span>{{ slide }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="slides">
+            <app-slide [activeSlide]="activeSlide" [slideSequence]="0">
+                <app-select-members 
+                    [(payment)]="payment" 
+                    (valid)="mayContinue = $event" 
+                    [rendered]="activeSlide === 0"></app-select-members>
+            </app-slide>
+            <app-slide [activeSlide]="activeSlide" [slideSequence]="1">
+                <app-value 
+                    [(payment)]="payment" 
+                    (valid)="mayContinue = $event"
+                    [rendered]="activeSlide === 1"></app-value>
+            </app-slide>
+            <app-slide [activeSlide]="activeSlide" [slideSequence]="2">
+                <app-note 
+                    [(payment)]="payment" 
+                    (valid)="mayContinue = $event"
+                    [rendered]="activeSlide === 2"></app-note>
+            </app-slide>
+            <app-slide [activeSlide]="activeSlide" [slideSequence]="3">
+                <app-included 
+                    [(payment)]="payment" 
+                    (valid)="mayContinue = $event"
+                    [rendered]="activeSlide === 3"></app-included>
+            </app-slide>
+        </div>
+        <div class="footer">
+            <div class="next-button">
+                <app-button *ngIf="activeSlide != slides.length - 1" (click)="next()" [disabled]="!mayContinue">
+                    <span class="d-flex align-items-center">
+                        Next page <i class="material-icons">chevron_right</i>
+                    </span> 
+                </app-button>
+                <app-button *ngIf="activeSlide == slides.length - 1" [disabled]="!mayContinue" (click)="finished()">
+                    <span class="d-flex align-items-center">
+                        Upload Payment <i class="material-icons">check</i>
+                    </span> 
+                </app-button>
+            </div>
+            <div class="prev-button" *ngIf="activeSlide != 0" appearAnimation>
+                <app-button color="#65cbc3" hover="#4c7783" (click)="back()">
+                    <span class="d-flex align-items-center">
+                        <i class="material-icons" style="margin: 0 .4rem 0 0">chevron_left</i> Back
+                    </span> 
+                </app-button>
+            </div>
+        </div>
+    </div>
+</main>
+<app-message-box
+    [content]="message.content"
+    [header]="message.header"
+    [alert]="message.alert"
+    [displayed]="message.displayed"
+    (finished)="redirect()"
+></app-message-box>
+<app-loading [loading]="loading"></app-loading>

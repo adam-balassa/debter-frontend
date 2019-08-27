@@ -1,0 +1,21 @@
+<div>
+  <div class="title">
+    Set payed the amount
+  </div>
+  <form class="row justify-content-center" [formGroup]="valueForm">
+    <div class="col-7">
+      <app-form-alert [alerted]="valueForm.invalid && valueForm.touched"  message="Please enter a valid amount">
+        <input 
+          type="text" 
+          class="text-input" 
+          placeholder="Amount payed..."
+          name="value"
+          (input)="setAmount()"
+          formControlName="value">
+      </app-form-alert>
+    </div>
+    <div class="col-4">
+      <app-select [values]="currencies" [selectedItem]="initialCurrency" (selected)="setCurrency($event)"></app-select>
+    </div>
+  </form>
+</div>

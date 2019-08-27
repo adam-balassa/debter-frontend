@@ -1,0 +1,20 @@
+<div>
+  <div class="title">
+    Add some note
+  </div>
+  <form class="note-container" #noteForm="ngForm">
+    <app-form-alert 
+      message="Please add a note longer than 3 characters" 
+      [alerted]="noteForm.invalid && noteForm.touched">
+      <textarea 
+        name="noteInput"
+        class="text-input note"
+        ngModel
+        placeholder="Note..."
+        #note
+        (input)="setNote(note.value)"
+        [minlength]="3"
+        required></textarea>
+    </app-form-alert>
+  </form>
+</div>

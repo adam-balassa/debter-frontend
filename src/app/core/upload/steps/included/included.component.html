@@ -1,0 +1,20 @@
+<div class="title">
+  Select who are included
+</div>
+<div class="users">
+  <app-member
+    [hoverable]="true" 
+    [selected]="everybodyIncluded" 
+    (click)="everybodyIncludedToggle()">
+    Everybody
+  </app-member>
+  <div class="other-users" *ngIf="!everybodyIncluded" @collapse>
+    <app-member
+      *ngFor="let user of users;"
+      [hoverable]="true" 
+      [selected]="selectedUsers.includes(user)" 
+      (click)="selectUser(user)">
+      {{ user.userName }}
+    </app-member>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+:host{
+    display: block;
+    padding: 2rem 0;
+}
+
+.note-container{
+    display: flex;
+    padding: 0 2rem;
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+.title{
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--dark-blue);
+}
+
+.note{
+    padding: 1rem 1.3rem;
+    transition: border ease-in-out .3s;
+    min-height: 5rem;
+}
+
+.input-holder{
+    align-items: flex-start;
+}

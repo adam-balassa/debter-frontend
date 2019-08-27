@@ -30,6 +30,13 @@ import { DetailsComponent } from './core/history/details/details.component';
 import { HistoryAllComponent } from './core/history/all/history-all.component';
 import { HistoryUndoComponent } from './core/history/history-undo/history-undo.component';
 import { HistoryComponent } from './core/history/history.component';
+import { UploadComponent } from './core/upload/upload.component';
+import { SlideComponent } from './core/upload/slide/slide.component';
+import { UploadItemComponent } from './core/upload/upload-item/upload-item.component';
+import { IncludedComponent } from './core/upload/steps/included/included.component';
+import { NoteComponent } from './core/upload/steps/note/note.component';
+import { ValueComponent } from './core/upload/steps/value/value.component';
+import { SelectMembersComponent } from './core/upload/steps/select-members/select-members.component';
 registerLocaleData (localeHungary, 'hu');
 registerLocaleData (localeUS, 'en');
 
@@ -53,7 +60,14 @@ registerLocaleData (localeUS, 'en');
     HistoryAllComponent,
     HistoryUndoComponent,
     HistoryComponent,
-    DetailsComponent
+    DetailsComponent,
+    UploadComponent,
+    SlideComponent,
+    IncludedComponent,
+    SelectMembersComponent,
+    NoteComponent,
+    ValueComponent,
+    UploadItemComponent
   ],
   imports: [
     BrowserModule,
