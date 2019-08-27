@@ -1,0 +1,23 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5em;
+    width: 100vw;
+}
+.main panel{
+    margin: 1rem;
+}
+.jumbotron{
+    padding: 7vh 10vw;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+@media screen and (max-width: 700px){
+    .main{
+        padding: 5em 2em;
+    }
+}

@@ -1,0 +1,25 @@
+<div class="row justify-content-center">
+  <div class="col-md-5 col-sm-12">
+      <panel
+      [content]="{
+        title: 'See all',
+        description: 'List all previous detailed payments in a chronological order.',
+        color: true,
+        redirectUrl: 'all'
+      }"
+      >
+    </panel>
+  </div>
+  <div class="col-md-5 col-sm-12">
+      <panel
+      [content]="{
+        title: 'Delete payments',
+        description: 'You may delete wrongly uploaded payments, or revive wrongly deleted ones',
+        color: false,
+        redirectUrl: 'undo'
+      }"
+      >
+    </panel>
+  </div>
+</div>
+

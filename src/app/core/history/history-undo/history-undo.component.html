@@ -1,0 +1,52 @@
+<div class="table-container">
+  <h2>{{deletedPayments.length > 0 ? 'Deleted payments' : 'No deleted payments found for this room'}}</h2>
+  <app-table *ngIf="deletedPayments.length > 0">
+    <app-table-row 
+      class="table-header" 
+      [cellsTemplate]="template" 
+      [cells]="['Name', 'Payed', 'Date', 'Note', '']"
+      [collapsable]="false">
+    </app-table-row>
+
+    <app-table-row 
+      *ngFor="let payment of deletedPayments" 
+      [cellsTemplate]="template" 
+      [cells]="[payment.user.userName, payment | valuePipe, payment.date | myDate, payment.note]"
+      [collapsable]="true">
+      <div class="button-container">
+        <app-button (click)="revive(payment)">Revive payment <i class="fa fa-refresh"></i></app-button>
+      </div>
+    </app-table-row>
+  </app-table>
+</div>
+
+<div class="table-container">
+  <h2>{{validPayments.length > 0 ? 'Valid payments' : 'No valid payments found for this room'}}</h2>
+  <app-table *ngIf="validPayments.length > 0">
+    <app-table-row 
+      class="table-header" 
+      [cellsTemplate]="template" 
+      [cells]="['Name', 'Payed', 'Date', 'Note', '']"
+      [collapsable]="false">
+    </app-table-row>
+
+    <app-table-row 
+      *ngFor="let payment of validPayments" 
+      [cellsTemplate]="template" 
+      [cells]="[payment.user.userName, payment | valuePipe, payment.date | myDate, payment.note]"
+      [collapsable]="true">
+      <app-details [payment]="payment"></app-details>
+      <div class="button-container">
+        <app-button (click)="delete(payment)">Delete payment <i class="fa fa-trash"></i></app-button>
+      </div>
+    </app-table-row>
+  </app-table>
+</div>
+<app-message-box
+    [content]="message.content"
+    [header]="message.header"
+    [alert]="message.alert"
+    [displayed]="message.displayed"
+    (finished)="messageBoxDisappear()"
+></app-message-box>
+<app-loading [loading]="loading"></app-loading>

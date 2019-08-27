@@ -1,10 +1,10 @@
 <header>
   <app-header-phone [items]="[
-    {title: 'Home', routerLink: '/project/' + 'BERLIN'},
-    {title: 'History', routerLink: '/project/' + 'BERLIN' + '/history'},
-    {title: 'Upload', routerLink: '/project/' + 'BERLIN' + '/upload'},
-    {title: 'Debts', routerLink: '/project/' + 'BERLIN' + '/debts'},
-    {title: 'Settings', routerLink: '/project/' + 'BERLIN' + '/settings'}
+    {title: 'Home', routerLink: '/room/' + 'BERLIN'},
+    {title: 'History', routerLink: '/room/' + 'BERLIN' + '/history'},
+    {title: 'Upload', routerLink: '/room/' + 'BERLIN' + '/upload'},
+    {title: 'Debts', routerLink: '/room/' + 'BERLIN' + '/debts'},
+    {title: 'Settings', routerLink: '/room/' + 'BERLIN' + '/settings'}
   ]">
   <app-button routerLink="/">
     Exit {{ 'BERLIN' }}
@@ -12,26 +12,26 @@
 </app-header-phone>
   <div class="header-content">
     <div class="home">
-      <a [routerLink]="'/project/' + 'BERLIN'" class="hoverable">Debter</a>
+      <a [routerLink]="'/room/' + 'BERLIN'" class="hoverable">Debter</a>
     </div>
     <div class="navigation">
       <div class="pages">
         <app-header-item 
-          [routerLink]="'/project/' + 'BERLIN'"
+          [routerLink]="'/room/' + 'BERLIN'"
           routerLinkActive="active" 
           [routerLinkActiveOptions]="{exact: true}"
           >Home</app-header-item>
         <app-header-item 
-          [routerLink]="'/project/' + 'BERLIN' + '/history'"
+          [routerLink]="'/room/' + 'BERLIN' + '/history'"
           routerLinkActive="active" >History</app-header-item>
         <app-header-item 
-          [routerLink]="'/project/' + 'BERLIN' + '/upload'"
+          [routerLink]="'/room/' + 'BERLIN' + '/upload'"
           routerLinkActive="active" >Upload</app-header-item>
         <app-header-item 
-          [routerLink]="'/project/' + 'BERLIN' + '/debts'"
+          [routerLink]="'/room/' + 'BERLIN' + '/debts'"
           routerLinkActive="active">Debts</app-header-item>
         <app-header-item 
-          [routerLink]="'/project/' + 'BERLIN' + '/settings'"
+          [routerLink]="'/room/' + 'BERLIN' + '/settings'"
           routerLinkActive="active" >Settings</app-header-item>
       </div>
       <div class="continue-to-app-container">

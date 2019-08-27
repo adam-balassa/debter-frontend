@@ -25,6 +25,11 @@ import { CreateComponent } from './home/create/create.component';
 import { CoreComponent } from './core/core.component';
 import { MainComponent } from './core/main/main.component';
 import { PaginateComponent } from './core/main/paginate/paginate.component';
+import { PanelsComponent } from './core/history/panels/panels.component';
+import { DetailsComponent } from './core/history/details/details.component';
+import { HistoryAllComponent } from './core/history/all/history-all.component';
+import { HistoryUndoComponent } from './core/history/history-undo/history-undo.component';
+import { HistoryComponent } from './core/history/history.component';
 registerLocaleData (localeHungary, 'hu');
 registerLocaleData (localeUS, 'en');
 
@@ -44,6 +49,11 @@ registerLocaleData (localeUS, 'en');
     HeaderItemComponent,
     MainComponent,
     PaginateComponent,
+    PanelsComponent,
+    HistoryAllComponent,
+    HistoryUndoComponent,
+    HistoryComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

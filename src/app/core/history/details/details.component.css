@@ -1,0 +1,44 @@
+
+
+.details-container{
+    display: flex;
+    width: 100%;
+}
+
+.details-left{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.details-note{
+    font-size: 1.2rem;
+}
+
+.details-light{
+    color: var(--dark-blue)
+}
+.details-value-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 1rem;
+    flex: 1;
+}
+
+.details-value{
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.separator{
+    width: 100%;
+    height: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.details-users{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+}

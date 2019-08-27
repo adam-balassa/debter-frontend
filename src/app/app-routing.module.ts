@@ -8,6 +8,10 @@ import { LoginComponent } from './home/login/login.component';
 import { CreateComponent } from './home/create/create.component';
 import { CoreComponent } from './core/core.component';
 import { MainComponent } from './core/main/main.component';
+import { HistoryComponent } from './core/history/history.component';
+import { PanelsComponent } from './core/history/panels/panels.component';
+import { HistoryAllComponent } from './core/history/all/history-all.component';
+import { HistoryUndoComponent } from './core/history/history-undo/history-undo.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'prefix', component: HomeComponent, children: [
@@ -17,8 +21,13 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'create', component: CreateComponent },
   ]},
-  { path: ':projectId', pathMatch: 'prefix', component: CoreComponent, children: [
-    { path: '', pathMatch: 'full', component: MainComponent }
+  { path: 'room/:roomId', pathMatch: 'prefix', component: CoreComponent, children: [
+    { path: '', pathMatch: 'full', component: MainComponent },
+    { path: 'history', pathMatch: 'prefix', component: HistoryComponent, children: [
+      { path: '', pathMatch: 'full', component: PanelsComponent },
+      { path: 'all', component: HistoryAllComponent },
+      { path: 'undo', component: HistoryUndoComponent }
+    ]}
   ]}
 ];
 

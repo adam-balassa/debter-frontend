@@ -1,0 +1,26 @@
+.details-user{
+    padding: 0 1.5rem;
+    height: 2.6rem;
+    display: flex;
+    align-items: center;
+    border-radius: 1.3rem;
+    border: 1px solid var(--dark-blue);
+    color: var(--dark-blue);
+    margin: 1rem 1rem 0 0;
+    justify-content: center;
+    text-align: center;
+    transition: all ease-in-out .12s;
+    cursor: default;
+}
+
+.selected{
+    background-color: var(--dark-blue);
+    color: var(--white);
+    /* box-shadow: var(--shadow); */
+}
+.hover{
+    cursor: pointer;
+}
+.hover:hover:not(.selected){
+    background: rgba(0, 0, 0, 0.1);
+}

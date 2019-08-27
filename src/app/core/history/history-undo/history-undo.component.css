@@ -1,0 +1,31 @@
+:host{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.table-container{
+    width: 70%;
+    padding-bottom: 3rem;
+}
+
+h2{
+    font-weight: 300;
+    color: var(--dark-blue);
+    margin: 2rem 0;
+}
+
+.button-container{
+    padding-top: 2rem;
+    width: 100%;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+@media screen and (max-width: 700px){
+    .table-container{
+        width: 100%;
+    }
+}

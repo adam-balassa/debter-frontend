@@ -1,0 +1,7 @@
+:host{
+    display: flex;
+    padding: 0 5rem;
+}
+panel{
+    margin: 2rem;
+}

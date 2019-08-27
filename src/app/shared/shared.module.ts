@@ -20,6 +20,7 @@ import { HeaderPhoneComponent } from './header-phone/header-phone.component';
 import { LoadingComponent } from './loading/loading.component';
 import { MessageBoxComponent } from './message-box/message-box.component';
 import { NotificationComponent } from './notification/notification.component';
+import { MemberComponent } from './member/member.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NotificationComponent } from './notification/notification.component';
     HeaderPhoneComponent,
     LoadingComponent,
     MessageBoxComponent,
-    NotificationComponent
+    NotificationComponent,
+    MemberComponent
   ],
   imports: [
     CommonModule,
@@ -56,6 +58,7 @@ import { NotificationComponent } from './notification/notification.component';
     AppearAnimation,
     DisappearAnimation,
     TableComponent,
+    MemberComponent,
     TableRowComponent,
     TableCellComponent,
     PanelComponent,
