@@ -1,0 +1,31 @@
+<div class="jumbotron">
+    <h1>Debts and arrangements</h1>
+</div>
+<div class="w-100 d-flex justify-content-center">
+  <div class="table-container">
+    <app-table>
+      <app-table-row 
+        class="table-header" 
+        [cellsTemplate]="template" 
+        [cells]="['Name', 'Sum', 'Debt', '']"
+        [collapsable]="false">
+      </app-table-row>
+      <div *ngFor="let member of members; let i = index">
+        <app-table-row 
+          *ngIf="member.debts.length > 0"
+          [cellsTemplate]="template" 
+          [cells]="[member.name, 
+          {value: member.sum, currency: (roomService.room | async).mainCurrency } | valuePipe, 
+          {value: member.debt, currency: (roomService.room | async).mainCurrency } | valuePipe]"
+          [collapsable]="true"
+          [collapsed]="true">
+          <app-debt 
+            *ngFor="let arrangement of member.debts; let j = index"
+            [debt]="arrangement" 
+            (done)="done(arrangement)"></app-debt>
+        </app-table-row>
+      </div>
+    </app-table>
+  </div>
+</div>
+<app-loading [loading]="loading"></app-loading>

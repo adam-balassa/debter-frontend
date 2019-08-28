@@ -23,7 +23,7 @@ export class MainComponent implements OnInit, OnDestroy {
   ];
 
   tableLabels = ['Name', 'Payed', 'Debt'];
-  members: (Member & {sum: number, debt: number})[] = [];
+  members: Member[] = [];
   sum: number = 0;
   loading: boolean = true;
   shown: boolean = false;
@@ -33,24 +33,10 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.project.loadRoomDetails().then(result => { this.loading = false; });
     this.subscription = this.project.room.subscribe(room => {
-      if (room.members.length > 0) {
-        this.members = room.members.map<Member&{sum: number, debt: number}>((member: Member) => ({
-          ...member,
-          sum: 0,
-          debt: 0
-        }));
-        this.members.forEach((member, i) =>
-          member.debts.forEach(debt => {
-            this.members[i].debt += debt.value;
-            this.members.find(m => debt.to.id === m.id).debt -= debt.value;
-        }));
-        room.payments.forEach(payment => {
-          this.members.find(member => member.id === payment.member.id).sum += payment.realValue;
-          this.sum += payment.realValue;
-        });
-        this.loading = false;
-      }
+      this.members = room.members;
+      this.sum = this.members.reduce((sum, next) => sum + next.sum, 0);
     });
   }
 

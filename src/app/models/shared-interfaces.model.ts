@@ -37,7 +37,6 @@ export interface FullRoomData {
     currency: string;
     realValue: number;
     note: string;
-    fromId: string;
     date: Date;
     active: boolean;
     memberId: string;

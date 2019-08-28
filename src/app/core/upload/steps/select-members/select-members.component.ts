@@ -11,21 +11,22 @@ import { Subscription } from 'rxjs';
 })
 export class SelectMembersComponent extends UploadItemComponent implements OnDestroy {
   members: Member[] = [];
-  activeUser: Member;
+  activeMember: Member;
   subscription: Subscription;
 
   constructor(private roomService: RoomService) {
     super();
+    this.members = this.roomService.room.value.members;
     this.subscription = this.roomService.room.subscribe(room => this.members = room.members);
    }
 
   checkValidation() {
-    this.valid.next(this.activeUser !== undefined);
+    this.valid.next(this.activeMember !== undefined);
   }
 
-  setActiveUser(user) {
-    this.activeUser = user;
-    this.payment.member = this.activeUser;
+  setActiveUser(member) {
+    this.activeMember = member;
+    this.payment.member = this.activeMember;
     this.paymentChanged.next(this.payment);
     this.valid.next(true);
   }

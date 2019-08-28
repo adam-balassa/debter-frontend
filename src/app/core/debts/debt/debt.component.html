@@ -1,0 +1,20 @@
+<div class="debt-container">
+  <div class="debt-user">
+    {{ debt.to.name }}
+  </div>
+  <div class="debt-value" [ngClass]="{arranged: debt.arranged}">
+    {{ { value: debt.value, currency: (roomService.room | async).mainCurrency } | valuePipe }}
+  </div>
+  <app-button 
+    *ngIf="!debt.arranged" 
+    (click)="done.emit()">
+      Arrange <i class="material-icons">check</i>
+  </app-button>
+  <app-button 
+    *ngIf="debt.arranged" 
+    color="var(--blue)"
+    hover="var(--blue)"
+    [absolute]="true">
+      <i class="fa fa-check"></i>
+  </app-button>
+</div>

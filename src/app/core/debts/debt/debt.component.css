@@ -1,0 +1,33 @@
+
+.debt-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:host:nth-last-child(1) .debt-container{
+    border-bottom: 0;
+}
+
+.debt-user{
+    flex: 2;
+    font-size: 1.1rem; 
+}
+
+
+.debt-value{
+    flex: 3;
+    font-size: 1.2rem;
+    color: var(--dark-pink)
+}
+.debt-value.arranged{
+    color: var(--blue)
+}
+
+app-button{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}

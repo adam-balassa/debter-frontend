@@ -11,7 +11,7 @@
     <app-table-row 
       *ngFor="let payment of deletedPayments" 
       [cellsTemplate]="template" 
-      [cells]="[payment.user.userName, payment | valuePipe, payment.date | myDate, payment.note]"
+      [cells]="[payment.member.name, payment | valuePipe, payment.date | myDate, payment.note]"
       [collapsable]="true">
       <div class="button-container">
         <app-button (click)="revive(payment)">Revive payment <i class="fa fa-refresh"></i></app-button>
@@ -33,7 +33,7 @@
     <app-table-row 
       *ngFor="let payment of validPayments" 
       [cellsTemplate]="template" 
-      [cells]="[payment.user.userName, payment | valuePipe, payment.date | myDate, payment.note]"
+      [cells]="[payment.member.name, payment | valuePipe, payment.date | myDate, payment.note]"
       [collapsable]="true">
       <app-details [payment]="payment"></app-details>
       <div class="button-container">

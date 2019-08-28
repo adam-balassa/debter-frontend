@@ -30,6 +30,10 @@ export class HistoryAllComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.members = this.room.room.value.members;
+    this.payments = this.room.room.value.payments.filter(p => p.active);
+    this.order(this.ordered.cell);
+
     this.subscriptions.push(this.room.room.subscribe(room => {
       if (room.members.length > 0) {
         this.payments = room.payments.filter(p => p.active);

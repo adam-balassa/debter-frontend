@@ -42,7 +42,8 @@ export class ValueComponent extends UploadItemComponent implements OnInit {
 
   isNumber (control: FormControl): {[key: string]: boolean} {
     const num: number = Number.parseFloat(control.value);
-    if (Number.isNaN(num) || num !== control.value)
+    // tslint:disable-next-line: triple-equals
+    if (Number.isNaN(num) || num != control.value)
       return { NaN: true };
     return null;
   }

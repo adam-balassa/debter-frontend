@@ -47,7 +47,7 @@ export class IncludedComponent extends UploadItemComponent implements OnInit, On
     this.checkValidation();
   }
 
-  selectUser(member: Member) {
+  selectMember(member: Member) {
     if (this.selectedMembers.includes(member))
       this.selectedMembers.splice(this.selectedMembers.indexOf(member), 1);
     else

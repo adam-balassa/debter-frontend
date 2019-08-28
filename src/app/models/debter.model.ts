@@ -1,14 +1,17 @@
 export interface Arrangement {
+  from: Member;
   to: Member;
   value: number;
   currency: string;
-  aranged: boolean;
+  arranged: boolean;
 }
 
 export interface Member {
   id: string;
   name: string;
   debts: Arrangement[];
+  sum: number;
+  debt: number;
 }
 
 export interface Payment {
@@ -17,11 +20,10 @@ export interface Payment {
   currency: string;
   realValue: number;
   note: string;
-  fromId: string;
   date: Date;
   active: boolean;
   member: Member;
-  excluded: string[];
+  excluded: Member[];
 }
 
 export interface Room {

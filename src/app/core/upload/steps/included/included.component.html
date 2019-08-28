@@ -10,11 +10,11 @@
   </app-member>
   <div class="other-users" *ngIf="!everybodyIncluded" @collapse>
     <app-member
-      *ngFor="let user of users;"
+      *ngFor="let member of members;"
       [hoverable]="true" 
-      [selected]="selectedUsers.includes(user)" 
-      (click)="selectUser(user)">
-      {{ user.userName }}
+      [selected]="selectedMembers.includes(member)" 
+      (click)="selectMember(member)">
+      {{ member.name }}
     </app-member>
   </div>
 </div>

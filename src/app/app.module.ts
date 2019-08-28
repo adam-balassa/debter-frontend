@@ -37,6 +37,8 @@ import { IncludedComponent } from './core/upload/steps/included/included.compone
 import { NoteComponent } from './core/upload/steps/note/note.component';
 import { ValueComponent } from './core/upload/steps/value/value.component';
 import { SelectMembersComponent } from './core/upload/steps/select-members/select-members.component';
+import { DebtsComponent } from './core/debts/debts.component';
+import { DebtComponent } from './core/debts/debt/debt.component';
 registerLocaleData (localeHungary, 'hu');
 registerLocaleData (localeUS, 'en');
 
@@ -67,7 +69,9 @@ registerLocaleData (localeUS, 'en');
     SelectMembersComponent,
     NoteComponent,
     ValueComponent,
-    UploadItemComponent
+    UploadItemComponent,
+    DebtComponent,
+    DebtsComponent
   ],
   imports: [
     BrowserModule,

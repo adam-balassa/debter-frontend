@@ -13,6 +13,7 @@ import { PanelsComponent } from './core/history/panels/panels.component';
 import { HistoryAllComponent } from './core/history/all/history-all.component';
 import { HistoryUndoComponent } from './core/history/history-undo/history-undo.component';
 import { UploadComponent } from './core/upload/upload.component';
+import { DebtsComponent } from './core/debts/debts.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'prefix', component: HomeComponent, children: [
@@ -29,7 +30,8 @@ const routes: Routes = [
       { path: 'all', component: HistoryAllComponent },
       { path: 'undo', component: HistoryUndoComponent }
     ]},
-    { path: 'upload', component: UploadComponent }
+    { path: 'upload', component: UploadComponent },
+    { path: 'debts', component: DebtsComponent }
   ]}
 ];
 

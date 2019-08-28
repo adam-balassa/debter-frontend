@@ -3,10 +3,10 @@
     <div class="users">
         <app-member 
           [hoverable]="true" 
-          [selected]="activeUser === user" 
-          *ngFor="let user of users" 
-          (click)="setActiveUser(user)">
-            {{ user.userName }}
+          [selected]="activeMember === member" 
+          *ngFor="let member of members" 
+          (click)="setActiveUser(member)">
+            {{ member.name }}
         </app-member>
     </div>
 </div>
