@@ -39,6 +39,8 @@ import { ValueComponent } from './core/upload/steps/value/value.component';
 import { SelectMembersComponent } from './core/upload/steps/select-members/select-members.component';
 import { DebtsComponent } from './core/debts/debts.component';
 import { DebtComponent } from './core/debts/debt/debt.component';
+import { SettingsComponent } from './core/settings/settings.component';
+import { NewRoomComponent } from './core/new-room/new-room.component';
 registerLocaleData (localeHungary, 'hu');
 registerLocaleData (localeUS, 'en');
 
@@ -71,7 +73,9 @@ registerLocaleData (localeUS, 'en');
     ValueComponent,
     UploadItemComponent,
     DebtComponent,
-    DebtsComponent
+    DebtsComponent,
+    SettingsComponent,
+    NewRoomComponent
   ],
   imports: [
     BrowserModule,

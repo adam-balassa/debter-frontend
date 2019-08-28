@@ -31,7 +31,8 @@ export class DebtsComponent implements OnInit, OnDestroy {
 
   done(arrangment: Arrangement) {
     this.loading = true;
-    this.roomService.arrangeDebt();
+    this.roomService.arrangeDebt(arrangment)
+    .then(() => {this.loading = false; });
   }
 
   ngOnDestroy() {

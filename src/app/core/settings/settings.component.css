@@ -1,0 +1,53 @@
+.main{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5em;
+  width: 100vw;
+}
+.main panel{
+  margin: 1rem;
+}
+.jumbotron{
+  padding: 7vh 10vw;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+.form-container{
+  padding: 3rem;
+  width: 40rem;
+  box-shadow: var(--shadow);
+  background-color: white;
+  border-radius: 1rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  min-height: 50vh;
+}
+
+h3{
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.my-cont{
+  min-height: 10rem;
+}
+
+.input-holder {
+  display: flex;
+  align-items: center;
+}
+
+app-button {
+  font-size: 1.3rem;
+}
+
+@media screen and (max-width: 700px){
+  .main{
+      padding: 5em 2em;
+  }
+}

@@ -23,7 +23,7 @@ export class Request<ResultType = any> {
           this.success(result, resolve, reject);
         },
         error => {
-          this.fail(error, reject);
+          this.fail(error.error, reject);
         },
       );
     });
@@ -40,7 +40,7 @@ export class Request<ResultType = any> {
         },
         error => {
           console.log(error);
-          this.fail(error, reject);
+          this.fail(error.error, reject);
         },
       );
     });
@@ -56,7 +56,7 @@ export class Request<ResultType = any> {
           this.success(result, resolve, reject);
         },
         error => {
-          this.fail(error, reject);
+          this.fail(error.error, reject);
         },
       );
     });
@@ -72,7 +72,7 @@ export class Request<ResultType = any> {
           this.success(result, resolve, reject);
         },
         error => {
-          this.fail(error, reject);
+          this.fail(error.error, reject);
         },
       );
     });
@@ -84,11 +84,10 @@ export class Request<ResultType = any> {
     return new Promise((resolve, reject) => {
       this.http.delete<Response>(API + url, { headers: this.headers }).subscribe(
         result => {
-          if (result.error) this.fail(result as Error, reject);
-          else this.success(result, resolve, reject);
+          this.success(result, resolve, reject);
         },
         error => {
-          this.fail(error as Error, reject);
+          this.fail(error.error, reject);
         },
       );
     });

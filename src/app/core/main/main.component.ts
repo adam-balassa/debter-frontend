@@ -12,12 +12,12 @@ import { Subscription } from 'rxjs';
 export class MainComponent implements OnInit, OnDestroy {
   @ViewChild('projectIdInput') projectIdInput: ElementRef;
   tableTemplate = [
-    {align: 'left', ratio: 1},
+    {align: 'left', ratio: 3},
     {align: 'right', ratio: 2},
     {align: 'right', ratio: 2, class: 'pink'}];
 
   tableHeaderTemplate = [
-    {align: 'left', ratio: 1},
+    {align: 'left', ratio: 3},
     {align: 'right', ratio: 2},
     {align: 'right', ratio: 2}
   ];

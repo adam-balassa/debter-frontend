@@ -2,6 +2,8 @@ import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from 'events';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CookieManager } from './../../services/cookie-manager.service';
+import { RoomService } from 'src/app/services/room.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import { CookieManager } from './../../services/cookie-manager.service';
 export class LoginComponent implements OnInit {
   @Output() submitted: EventEmitter;
   popup: boolean = false;
-  constructor(private cookieManager: CookieManager) { }
+  constructor(private cookieManager: CookieManager, private roomService: RoomService, private router: Router) { }
   form: FormGroup;
   message = '';
   projectIds: string[] = [];
@@ -28,8 +30,14 @@ export class LoginComponent implements OnInit {
   join() {
     if (this.form.invalid) return;
     this.loading = true;
-    const roomId = this.form.value.roomIdInput;
-    // TODO: Login
+    const roomKey = this.form.value.roomIdInput;
+    this.roomService.joinRoom(roomKey).then(() => { this.router.navigateByUrl(`/room/${roomKey}`); })
+    .catch(error => {
+      this.cookieManager.eraseProjectId(roomKey);
+      this.projectIds = this.cookieManager.loadProjectIds();
+      this.message = error;
+      this.loading = false;
+    });
   }
 
   onIdChosen(roomId: string) {

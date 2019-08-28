@@ -38,6 +38,7 @@ export class CookieManager {
         const oldSeparator = '&';
         const oldDebterCookies = this.getCookie(oldDebterCookieName);
         const ids = oldDebterCookies === '' ? [] : oldDebterCookies.split(oldSeparator);
+        this.setCookie(oldDebterCookieName, '');
         return ids.filter(id => id.length === 6);
     }
 

@@ -14,6 +14,11 @@ import { HistoryAllComponent } from './core/history/all/history-all.component';
 import { HistoryUndoComponent } from './core/history/history-undo/history-undo.component';
 import { UploadComponent } from './core/upload/upload.component';
 import { DebtsComponent } from './core/debts/debts.component';
+import { SettingsComponent } from './core/settings/settings.component';
+import { NewRoomComponent } from './core/new-room/new-room.component';
+import { RoomService } from './services/room.service';
+import { CoreGuardService } from './core-guard.service';
+import { NewRoomGuardService } from './new-room-guard.service';
 
 const routes: Routes = [
   { path: '', pathMatch: 'prefix', component: HomeComponent, children: [
@@ -23,15 +28,17 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'create', component: CreateComponent },
   ]},
-  { path: 'room/:roomId', pathMatch: 'prefix', component: CoreComponent, children: [
-    { path: '', pathMatch: 'full', component: MainComponent },
+  { path: 'room/:roomKey/members', component: NewRoomComponent, canActivate: [NewRoomGuardService] },
+  { path: 'room/:roomKey', pathMatch: 'prefix', component: CoreComponent, canActivate: [CoreGuardService], children: [
+    { path: '', pathMatch: 'full', component: MainComponent},
     { path: 'history', pathMatch: 'prefix', component: HistoryComponent, children: [
       { path: '', pathMatch: 'full', component: PanelsComponent },
       { path: 'all', component: HistoryAllComponent },
       { path: 'undo', component: HistoryUndoComponent }
     ]},
     { path: 'upload', component: UploadComponent },
-    { path: 'debts', component: DebtsComponent }
+    { path: 'debts', component: DebtsComponent },
+    { path: 'settings', component: SettingsComponent }
   ]}
 ];
 

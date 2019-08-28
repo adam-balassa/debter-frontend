@@ -1,0 +1,40 @@
+<div class="page">
+    <h1>Enter room id</h1>
+    <form #form="ngForm">
+      <div class="members">
+          <div 
+            class="d-flex form-group w-100 member-holder"
+            *ngFor="let member of members; let i = index; trackBy:trackByIndex"
+            disappearAnimation
+            >
+            <div class="w-100 d-flex" appearAnimation>
+              <div class="input-holder" disappearAnimation>
+                  <input 
+                  type="text" 
+                  class="form-control text-input" 
+                  placeholder="Name..."
+                  name="name{{ i }}"
+                  [(ngModel)]="members[i]">
+              </div>
+              <span style="width: 1em"></span>
+              <app-button [absolute]="true" (click)="removeMember(i)"><i class="fa fa-close"></i></app-button>
+            </div>
+          </div>
+      </div>
+      <div class="d-flex form-group w-100">
+          <input 
+            type="text" 
+            class="form-control text-input" 
+            placeholder="Name..."
+            disabled>
+          <span style="width: 1em"></span>
+          <app-button [absolute]="true" color="#65cbc3" hover="#4c7783" (click)="addNewMember()">
+          <i class="fa fa-plus"></i></app-button>
+      </div>
+      <div class="w-100 form-group d-flex justify-content-center">
+          <app-button color="#65cbc3" hover="#4c7783" (click)="save()">
+            <span>Save</span>
+          </app-button>
+      </div>
+  </form>
+</div>

@@ -21,7 +21,7 @@ export class HistoryAllComponent implements OnInit, OnDestroy {
 
   payments: Payment[] = [];
   members: Member[] = [];
-  ordered: {cell: number, asc: boolean} = {cell: 2, asc: true};
+  ordered: {cell: number, asc: boolean} = {cell: 2, asc: false};
 
   subscriptions: Subscription[] = [];
 
@@ -58,7 +58,7 @@ export class HistoryAllComponent implements OnInit, OnDestroy {
         break;
       case 1:
         this.payments.sort((a, b) => {
-          return (a.value - b.value) * (this.ordered.asc ? 1 : -1) ;
+          return (a.realValue - b.realValue) * (this.ordered.asc ? -1 : 1) ;
         });
         break;
       case 2:

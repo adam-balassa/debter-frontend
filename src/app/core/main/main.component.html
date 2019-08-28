@@ -31,7 +31,7 @@
       <app-table-row 
         *ngFor="let member of members" 
         [cellsTemplate]="[
-          {align: 'left', ratio: 1}, 
+          {align: 'left', ratio: 3}, 
           {align: 'right', ratio: 2}, 
           {align: 'right', ratio: 2, class: member.debt > 0 ? 'pink' : 'blue'}]" 
         [cells]="[

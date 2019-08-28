@@ -54,7 +54,8 @@ export class UploadComponent implements OnInit {
   finished() {
     if (!this.mayContinue) return;
     this.loading = true;
-    this.roomService.uploadNewPayment();
+    this.roomService.uploadNewPayment(this.payment)
+    .then(() => { this.router.navigate(['../'], { relativeTo: this.route }); });
   }
 
   redirect() {

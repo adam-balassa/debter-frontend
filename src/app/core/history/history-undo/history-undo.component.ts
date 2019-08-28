@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Payment } from 'src/app/models/debter.model';
+import { Payment, Room } from 'src/app/models/debter.model';
 import { RoomService } from 'src/app/services/room.service';
 
 @Component({
@@ -38,9 +38,13 @@ export class HistoryUndoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(this.room.room.subscribe(room => {
-      this.validPayments = room.payments.filter(payment => payment.active);
-      this.deletedPayments = room.payments.filter(payment => !payment.active);
-}));
+      this.init(room);
+    }));
+  }
+
+  init(room: Room) {
+    this.validPayments = room.payments.filter(payment => payment.active);
+    this.deletedPayments = room.payments.filter(payment => !payment.active);
   }
 
   ngOnDestroy() {
@@ -49,12 +53,14 @@ export class HistoryUndoComponent implements OnInit, OnDestroy {
 
   revive(payment: Payment) {
     this.loading = true;
-    this.room.revivePayment();
+    this.room.revivePayment(payment)
+    .then(() => { this.loading = false; this.init(this.room.room.value); });
   }
 
   delete(payment: Payment) {
     this.loading = true;
-    this.room.deletePayment();
+    this.room.deletePayment(payment)
+    .then(() => { this.loading = false;  this.init(this.room.room.value); });
   }
 
 
