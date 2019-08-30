@@ -12,7 +12,7 @@ import { Room } from 'src/app/models/debter.model';
 export class CreateComponent implements OnInit {
   @ViewChild('createForm') form;
   username: string;
-  message = 'Room id must be at least 6 characters';
+  message = 'Title must be at least 6 characters';
   error = false;
   constructor(
     private router: Router,
@@ -26,7 +26,7 @@ export class CreateComponent implements OnInit {
     if (this.form.invalid) return;
     this.roomService.createRoom(title)
     .then((room: Room) => {
-      this.cookieService.fetchProjectId(room.roomKey);
+      this.cookieService.addRoom(room.roomKey, title);
       this.router.navigateByUrl(`/room/${room.roomKey}/members`);
     })
     .catch(error => { this.error = true; this.message = error; });

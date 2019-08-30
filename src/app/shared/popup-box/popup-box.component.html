@@ -1,22 +1,22 @@
-<ng-template [(clickOut)]="displayed">
-  <div class="main" @disappear>
-    <div @appear>
+<div class="host" @disappear *ngIf="displayed" (click)="hide()">
+  <div class="main">
+    <div>
       <div class="title">
         <span> {{ content.title }} </span>
       </div>
       <div class="contents">
-        <div class="content-holder" *ngFor="let item of content.content; let i=index">
+        <div class="content-holder" *ngFor="let item of content.content">
           <div 
             class="content" 
             [ngStyle]="{'border-bottom-width': (i == content.content.length - 1 ? '0' : '1px')}"
-            (click)="onNoteTextClick(content.content[i])"
+            (click)="onNoteTextClick(item.roomKey)"
             >
-            <span> {{ item }} </span>
+            <span> {{ item.name }} </span>
           </div>
         </div>
       </div>
       
     </div>
   </div>  
-</ng-template>
+</div>
   

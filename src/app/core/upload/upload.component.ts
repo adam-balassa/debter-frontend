@@ -18,7 +18,7 @@ export interface UploadingPayment {
 })
 export class UploadComponent implements OnInit {
 
-  slides = ['Who payed?', 'How much?', 'Add note', 'Who\'s included?'];
+  slides = ['Who paid?', 'How much?', 'Add note', 'Who\'s included?'];
   activeSlide = 0;
   mayContinue: boolean = false;
   payment: UploadingPayment;

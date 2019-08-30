@@ -2,7 +2,7 @@ import { Component, OnInit, Input, HostListener, ElementRef, Output, EventEmitte
 import { trigger, transition, animate, style } from '@angular/animations';
 interface PopUpContent {
   title: string;
-  content: string;
+  content: {name: string; value: string}[];
 }
 
 @Component({
@@ -10,31 +10,21 @@ interface PopUpContent {
   templateUrl: './popup-box.component.html',
   styleUrls: ['./popup-box.component.css'],
   animations: [
-    trigger('appear', [
-      transition('void => *', [style({ opacity: 0 }), animate(200)])
-    ]),
     trigger('disappear', [
       transition('* => void', [
         animate(200),
         style({ opacity: 0 })
-      ])
+      ]),
+      transition('void => *', [style({ opacity: 0 }), animate(200)])
     ])
   ]
 })
 export class PopupBoxComponent implements OnInit, OnDestroy {
 
-  isDisplayed: boolean;
-  @Input('displayed') set displayed(value: boolean) {
-    if (this.isDisplayed == value) return;
-    this.isDisplayed = value;
-    this.displayedChange.emit(value);
-  }
-  get displayed(): boolean {
-    return this.isDisplayed;
-  }
-  @Output('displayedChange') displayedChange = new EventEmitter<boolean>()
+  @Input('displayed') displayed: boolean;
   @Input('content') content: PopUpContent;
   @Output('textChosen') chosenText: EventEmitter<string> = new EventEmitter<string>();
+  @Output('disappeared') disappeared: EventEmitter<void> = new EventEmitter<void>();
   positioned: boolean = false;
 
   constructor(private element: ElementRef) { }
@@ -46,20 +36,12 @@ export class PopupBoxComponent implements OnInit, OnDestroy {
     this.positioned = false;
   }
 
-  @HostListener('document:click', ['$event'])
-  clicked(event) {
-    this.setPosition(event.x, event.y);
-  }
-
   onNoteTextClick(text: string) {
     this.chosenText.emit(text);
   }
 
-  setPosition(x: number, y: number) {
-    if (this.positioned || !this.displayed) return;
-
-    this.element.nativeElement.children[0].style.top = y - 16 + 'px';
-    this.element.nativeElement.children[0].style.left = x + 'px';
-    this.positioned = true;
+  hide() {
+    this.displayed = false;
+    this.disappeared.next();
   }
 }

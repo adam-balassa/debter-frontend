@@ -1,49 +1,40 @@
 import { Injectable } from '@angular/core';
 
 const debterCookieName = 'debter_pids';
-const separator = '|';
 
+interface Room {
+    roomKey: string;
+    name: string;
+}
 @Injectable({providedIn: 'root'})
 export class CookieManager {
 
-    projectIds: string[];
+    rooms: Room[];
 
     constructor() {
-        const oldIds = this.loadOldCookies();
         const debterCookies = this.getCookie(debterCookieName);
-        const ids = debterCookies === '' ? [] : debterCookies.split(separator);
-        this.projectIds = Array.from(new Set<string>([...ids, ...oldIds]));
+        this.rooms = JSON.parse(debterCookies);
+    }
+
+    loadRooms(): Room[] {
+        return this.rooms;
+    }
+
+    addRoom(roomKey: string, name: string) {
+        if (this.rooms.find(room => room.roomKey === roomKey))
+            this.eraseRoom(roomKey);
+        this.rooms.unshift({roomKey, name});
         this.saveProjectIds();
     }
 
-    loadProjectIds(): string[] {
-        return Array.from(this.projectIds);
-    }
-
-    fetchProjectId(newId: string) {
-        if (this.projectIds.indexOf(newId) !== -1)
-            this.eraseProjectId(newId);
-        this.projectIds.unshift(newId);
+    eraseRoom(roomKey: string) {
+        if (this.rooms.findIndex(room => room.roomKey === roomKey) === -1) return;
+        this.rooms.splice(this.rooms.findIndex(room => room.roomKey === roomKey), 1);
         this.saveProjectIds();
-    }
-
-    eraseProjectId(id: string) {
-        if (this.projectIds.indexOf(id) === -1) return;
-        this.projectIds.splice(this.projectIds.indexOf(id), 1);
-        this.saveProjectIds();
-    }
-
-    private loadOldCookies(): string[] {
-        const oldDebterCookieName = 'debter_projects';
-        const oldSeparator = '&';
-        const oldDebterCookies = this.getCookie(oldDebterCookieName);
-        const ids = oldDebterCookies === '' ? [] : oldDebterCookies.split(oldSeparator);
-        this.setCookie(oldDebterCookieName, '');
-        return ids.filter(id => id.length === 6);
     }
 
     private saveProjectIds() {
-        this.setCookie(debterCookieName, Array.from(this.projectIds).join('|'), 10000);
+        this.setCookie(debterCookieName, JSON.stringify(this.rooms), 10000);
     }
 
     private setCookie(name: string, value: string, days?: number) {

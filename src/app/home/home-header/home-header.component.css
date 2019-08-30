@@ -6,7 +6,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 4rem;
+    padding: 0 2rem;
     position: fixed;
     width: 100vw;
     z-index: 15;
@@ -29,7 +29,7 @@ header * {
     text-transform: uppercase
 }
 .continue-to-app-container{
-    margin: 0 1em;
+    margin: 0 .5em;
 }
 .header-placeholder{
     height: 4rem;
@@ -47,6 +47,5 @@ app-header-phone{
     }
     .header-content{
         justify-content: space-between;
-        padding: 0 2rem; 
     }
 }

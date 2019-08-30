@@ -1,11 +1,23 @@
+.host {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  background-color: #0003;
+}
 .main{
-    box-shadow: var(--shadow);
-    min-width: 5rem;
-    border-radius: 1rem;
-    overflow-x: hidden;
-    overflow-y: auto;
-    text-align: center;
-    position: fixed;
+  box-shadow: var(--shadow);
+  min-width: 5rem;
+  border-radius: 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+  position: fixed;
 }
 .title{
     background-color: var(--pink);
@@ -20,7 +32,7 @@
     white-space: nowrap;
     font-size: 1rem;
     overflow: auto;
-    max-height: 20rem;
+    max-height: calc(100vh - 15rem);
 }
 .content-holder{
     padding: 0 1rem;

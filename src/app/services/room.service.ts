@@ -5,6 +5,7 @@ import { Request } from '../models/request.model';
 import { HttpClient } from '@angular/common/http';
 import { FullRoomData, RoomDetails, UploadableMembers, UploadablePayment } from '../models/shared-interfaces.model';
 import { UploadingPayment } from '../core/upload/upload.component';
+import { CookieManager } from './cookie-manager.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class RoomService {
     name: ''
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieManager: CookieManager) { }
 
   public joinRoom(roomKey: string): Promise<Room> {
     const room: Room = this.room.value;
@@ -32,6 +33,7 @@ export class RoomService {
         rounding: roomDetails.rounding,
         mainCurrency: roomDetails.defaultCurrency
       };
+      this.cookieManager.addRoom(newRoom.roomKey, newRoom.name);
       this.room.next(newRoom);
       return newRoom;
     });
@@ -69,7 +71,8 @@ export class RoomService {
           room.payments.find(p => p.id === payment.note).excluded = room.members.filter(member => member !== payment.member);
         }
       }
-      room.payments.forEach(payment => payment.member.sum += payment.realValue);
+      room.payments.forEach(payment => payment.member.sum += payment.realValue * (payment.active ? 1 : 0));
+      room.members.forEach(member => member.sum = this.round(member.sum));
 
       roomData.debts.forEach(debt => {
         const from = room.members.find(member => debt.from === member.id);
@@ -109,12 +112,12 @@ export class RoomService {
 
   public deletePayment(payment: Payment): Promise<any> {
     return new Request(this.http).delete(`/room/${this.room.value.roomKey}/payment/${payment.id}`)
-    .then(() => payment.active = false);
+    .then(() => this.loadRoomDetails());
   }
 
   public revivePayment(payment: Payment): Promise<any> {
     return new Request(this.http).patch(`/room/${this.room.value.roomKey}/payment/${payment.id}`)
-    .then(() => payment.active = true);
+    .then(() => this.loadRoomDetails());
   }
 
   public arrangeDebt(debt: Arrangement): Promise<any> {
@@ -128,11 +131,13 @@ export class RoomService {
   }
 
   public setRounding(rounding: number): Promise<any> {
-    return new Request(this.http).patch('/settings/rounding', { rounding, roomKey: this.room.value.roomKey });
+    return new Request(this.http).patch('/settings/rounding', { rounding, roomKey: this.room.value.roomKey })
+    .then(() => { this.room.next({...this.room.value, rounding}); this.loadRoomDetails(); });
   }
 
   public setMainCurrency(mainCurrency: string) {
-    return new Request(this.http).patch('/settings/currency', { mainCurrency, roomKey: this.room.value.roomKey });
+    return new Request(this.http).patch('/settings/currency', { mainCurrency, roomKey: this.room.value.roomKey })
+    .then(() => { this.room.next({...this.room.value, mainCurrency}); this.loadRoomDetails(); });
   }
 
   public reset() {
@@ -144,5 +149,14 @@ export class RoomService {
       roomKey: '',
       name: ''
     });
+  }
+
+  public deleteOldRooms(): Promise<any> {
+    return new Request(this.http).delete('/rooms');
+  }
+
+  private round(value: number) {
+    const { rounding } = this.room.value;
+    return Math.floor(value / rounding) * rounding;
   }
 }

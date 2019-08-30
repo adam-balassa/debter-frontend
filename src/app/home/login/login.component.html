@@ -17,8 +17,9 @@
                     </app-button>
             </app-form-alert>
             <app-popup-box 
-                [(displayed)]="popup"
-                [content]="{title: 'Previous rooms', content: projectIds}"
+                [displayed]="popup"
+                (disappeared)="popup = false"
+                [content]="{title: 'Previous rooms', content: rooms}"
                 (textChosen)="onIdChosen($event)"
             >
             </app-popup-box>

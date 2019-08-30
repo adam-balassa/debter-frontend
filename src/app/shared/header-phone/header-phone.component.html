@@ -1,10 +1,11 @@
 <nav role="navigation" #nav>
-  <div id="menuToggle">
-    <input type="checkbox" #check />
-    <span></span>
-    <span></span>
-    <span></span>
-    <ul id="menu" #menu>
+  <div id="menuToggle" [ngClass]="{'open': open}">
+    <div id="nav-icon4" #check (click)="open = !open">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="menu">
       <div class="home">
         <a routerLink="/en/login" class="hoverable">Debter</a>
       </div>

@@ -8,7 +8,7 @@ export class MyDatePipe implements PipeTransform {
   datePipe: DatePipe;
 
   constructor() {
-    this.datePipe = new DatePipe('en');
+    this.datePipe = new DatePipe('hu');
   }
 
   transform(date: Date, args?: any): any {

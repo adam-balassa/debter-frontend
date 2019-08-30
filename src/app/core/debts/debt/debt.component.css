@@ -16,9 +16,10 @@
     font-size: 1.1rem; 
 }
 
-
 .debt-value{
-    flex: 3;
+    text-align: end;
+    flex: 1;
+    margin-right: 2rem;
     font-size: 1.2rem;
     color: var(--dark-pink)
 }

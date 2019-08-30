@@ -22,7 +22,7 @@ export class MainComponent implements OnInit, OnDestroy {
     {align: 'right', ratio: 2}
   ];
 
-  tableLabels = ['Name', 'Payed', 'Debt'];
+  tableLabels = ['Name', 'Paid', 'Debt'];
   members: Member[] = [];
   sum: number = 0;
   loading: boolean = true;

@@ -1,9 +1,9 @@
 <div class="debt-container">
-  <div class="debt-user">
-    {{ debt.to.name }}
-  </div>
   <div class="debt-value" [ngClass]="{arranged: debt.arranged}">
     {{ { value: debt.value, currency: (roomService.room | async).mainCurrency } | valuePipe }}
+  </div>
+  <div class="debt-user">
+    for {{ debt.to.name }}
   </div>
   <app-button 
     *ngIf="!debt.arranged" 

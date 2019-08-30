@@ -54,13 +54,13 @@ export class HistoryUndoComponent implements OnInit, OnDestroy {
   revive(payment: Payment) {
     this.loading = true;
     this.room.revivePayment(payment)
-    .then(() => { this.loading = false; this.init(this.room.room.value); });
+    .then(() => { this.loading = false; });
   }
 
   delete(payment: Payment) {
     this.loading = true;
     this.room.deletePayment(payment)
-    .then(() => { this.loading = false;  this.init(this.room.room.value); });
+    .then(() => { this.loading = false; });
   }
 
 

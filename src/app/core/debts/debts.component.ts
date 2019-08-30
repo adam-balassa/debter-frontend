@@ -25,8 +25,8 @@ export class DebtsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.members = this.roomService.room.value.members;
-    this.subscription = this.roomService.room.subscribe(room => this.members = room.members);
+    this.members = this.roomService.room.value.members.filter(member => member.debts.length > 0);
+    this.subscription = this.roomService.room.subscribe(room => this.members = room.members.filter(member => member.debts.length > 0));
   }
 
   done(arrangment: Arrangement) {

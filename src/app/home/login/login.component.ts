@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
   constructor(private cookieManager: CookieManager, private roomService: RoomService, private router: Router) { }
   form: FormGroup;
   message = '';
-  projectIds: string[] = [];
+  rooms: {roomKey: string, name: string}[] = [];
   loading: boolean = false;
 
   ngOnInit() {
-    this.projectIds = this.cookieManager.loadProjectIds();
+    this.rooms = this.cookieManager.loadRooms();
     this.form = new FormGroup({
       roomIdInput: new FormControl('', [Validators.maxLength(6), Validators.minLength(6), Validators.required]),
       submit: new FormControl(null)
@@ -31,10 +31,12 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) return;
     this.loading = true;
     const roomKey = this.form.value.roomIdInput;
-    this.roomService.joinRoom(roomKey).then(() => { this.router.navigateByUrl(`/room/${roomKey}`); })
+    this.roomService.joinRoom(roomKey).then(() => {
+      this.router.navigateByUrl(`/room/${roomKey}`);
+    })
     .catch(error => {
-      this.cookieManager.eraseProjectId(roomKey);
-      this.projectIds = this.cookieManager.loadProjectIds();
+      this.cookieManager.eraseRoom(roomKey);
+      this.rooms = this.cookieManager.loadRooms();
       this.message = error;
       this.loading = false;
     });
