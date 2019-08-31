@@ -21,7 +21,8 @@
     flex: 1;
     margin-right: 2rem;
     font-size: 1.2rem;
-    color: var(--dark-pink)
+    color: var(--dark-pink);
+    white-space: nowrap;
 }
 .debt-value.arranged{
     color: var(--blue)
@@ -31,4 +32,9 @@ app-button{
     flex: 1;
     display: flex;
     justify-content: center;
+}
+@media screen and (max-width: 450px) {
+    .debt-container {
+        padding: 1rem;
+    }
 }
