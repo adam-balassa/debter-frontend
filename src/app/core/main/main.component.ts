@@ -29,7 +29,7 @@ export class MainComponent implements OnInit, OnDestroy {
   shown: boolean = false;
   subscription: Subscription;
 
-  constructor(private project: RoomService, private route: ActivatedRoute) {
+  constructor(public project: RoomService) {
   }
 
   ngOnInit() {

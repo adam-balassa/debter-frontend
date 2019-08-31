@@ -9,7 +9,7 @@ import { RoomService } from 'src/app/services/room.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private roomService: RoomService) {}
+  constructor(public roomService: RoomService) {}
 
   ngOnInit() {
   }
