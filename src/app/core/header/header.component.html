@@ -6,9 +6,11 @@
     {title: 'Debts', routerLink: '/room/' + (roomService.room | async).roomKey + '/debts'},
     {title: 'Settings', routerLink: '/room/' + (roomService.room | async).roomKey + '/settings'}
   ]">
-  <app-button routerLink="/">
-    Exit {{ (roomService.room | async).roomKey }}
-  </app-button>
+  <div class="phone-button">
+    <app-button routerLink="/">
+      Exit {{ (roomService.room | async).roomKey }}
+    </app-button>
+  </div>
 </app-header-phone>
   <div class="header-content">
     <div class="home">

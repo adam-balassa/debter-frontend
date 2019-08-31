@@ -31,6 +31,14 @@ header * {
 .continue-to-app-container{
     margin: 0 1em;
 }
+
+.phone-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem
+}
+
 .header-placeholder{
     height: 4rem;
 }
