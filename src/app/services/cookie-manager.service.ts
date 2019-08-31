@@ -13,7 +13,9 @@ export class CookieManager {
 
     constructor() {
         const debterCookies = this.getCookie(debterCookieName);
-        this.rooms = JSON.parse(debterCookies);
+        try {
+            this.rooms = JSON.parse(debterCookies);
+        } catch (error) { this.rooms = []; }
     }
 
     loadRooms(): Room[] {
