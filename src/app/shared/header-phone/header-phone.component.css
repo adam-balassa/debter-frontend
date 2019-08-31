@@ -160,3 +160,12 @@ a:hover{
   top: 39px;
   left: 8px;
 }
+
+@media screen and (max-width: 450px) {
+  #nav-icon4 {
+    -webkit-transform: rotate(0deg) scale(0.37);
+    -moz-transform: rotate(0deg) scale(0.37);
+    -o-transform: rotate(0deg) scale(0.37);
+    transform: rotate(0deg) scale(0.37);
+  }
+}
