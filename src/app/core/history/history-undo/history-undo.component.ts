@@ -43,8 +43,8 @@ export class HistoryUndoComponent implements OnInit, OnDestroy {
   }
 
   init(room: Room) {
-    this.validPayments = room.payments.filter(payment => payment.active);
-    this.deletedPayments = room.payments.filter(payment => !payment.active);
+    this.validPayments = room.payments.filter(payment => payment.active).sort((b, a) => a.date.getTime() - b.date.getTime());
+    this.deletedPayments = room.payments.filter(payment => !payment.active).sort((b, a) => a.date.getTime() - b.date.getTime());
   }
 
   ngOnDestroy() {
