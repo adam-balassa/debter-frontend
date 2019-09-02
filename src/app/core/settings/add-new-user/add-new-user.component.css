@@ -1,0 +1,80 @@
+.jumbotron{
+  padding: 7vh 10vw;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+h3{
+  font-weight: 300;
+  margin-bottom: 2rem;
+  padding: 0 3rem;
+  width: 100%;
+}
+
+.buttons {
+  width: 100%;
+  justify-content: center;
+  padding: 2rem 0;
+  display: flex;
+  font-size: 1.5rem;
+}
+
+.buttons app-button {
+  margin: 0 .5rem;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  box-shadow: var(--shadow);
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: white;
+}
+
+thead {
+  background-color: var(--pink);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+td {
+  padding: 1rem 1.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 15rem;
+}
+
+tr {
+  border-bottom: 1px solid var(--white);
+}
+
+td span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.save {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 1.6rem;
+}
+
+@media screen and (max-width: 500px) {
+  td {
+    padding: 1rem .8rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 8rem;
+  }
+}

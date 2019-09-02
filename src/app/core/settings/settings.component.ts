@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
 import { Room } from 'src/app/models/debter.model';
+import { AddUserService } from '../../services/add-user.service';
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +17,7 @@ export class SettingsComponent implements OnInit {
   initialCurrencyIndex: number;
   loading = false;
 
-  constructor(private room: RoomService) { }
+  constructor(private room: RoomService, private addUserService: AddUserService, private router: Router, private link: ActivatedRoute) { }
 
   ngOnInit() {
     const room: Room = this.room.room.value;
@@ -37,7 +38,8 @@ export class SettingsComponent implements OnInit {
   }
 
   addNewMember(name: string) {
-    alert('This feature is coming soon');
+    this.addUserService.name = name;
+    this.router.navigate(['new-user'], { relativeTo: this.link });
   }
 
 }

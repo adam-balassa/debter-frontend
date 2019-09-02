@@ -19,6 +19,7 @@ button{
 button > span{
     font-size: 0.8em;
     white-space: nowrap;
+    display: flex;
 }
 
 button.absolute > span{

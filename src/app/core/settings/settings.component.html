@@ -1,40 +1,37 @@
 <div class="jumbotron">
-    <h1>Settings</h1>
+  <h1>Settings</h1>
 </div>
 <div class="main">
-    <div class="form-container">
-        <div class="row w-100">
-            <div class="col-6 d-flex w-100 flex-column align-items-center my-cont" style="z-index: 12">
-                <h3>Rounding</h3>
-                <div class="col-12">
-                    <app-select [values]="values" [selectedItem]="initialValueIndex" (selected)="setRounding($event)"></app-select>
-                </div>
-            </div>
-            <div class="col-6 d-flex w-100 flex-column align-items-center my-cont">
-                <h3>Main currency</h3>
-                <div class="col-12">
-                    <app-select [values]="currencies" [selectedItem]="initialCurrencyIndex" (selected)="setCurrency($event)"></app-select>
-                </div>
-            </div>
+  <div class="form-container">
+    <div class="row w-100">
+      <div class="col-md-6 d-flex w-100 flex-column align-items-center my-cont" style="z-index: 12">
+        <h3>Rounding</h3>
+        <div class="col-12">
+          <app-select [values]="values" [selectedItem]="initialValueIndex" (selected)="setRounding($event)">
+          </app-select>
         </div>
-        <div class="col-12 d-flex w-100 flex-column align-items-center my-cont">
-            <h3>Add new member</h3>
-            <form class="col-12" #form="ngForm">
-                <div class="input-holder row">
-                    <input 
-                        type="text" 
-                        class="form-control text-input col" 
-                        placeholder="Name..."
-                        #userName
-                        ngModel
-                        required
-                        name="new-user">
-                    <app-button [disabled]="form.invalid" class="col-auto" color="#65cbc3" hover="#4c7783" (click)="form.valid ? addNewMember(userName.value) : ''">
-                        Add member
-                    </app-button>
-                </div>
-            </form>
+      </div>
+      <div class="col-md-6 d-flex w-100 flex-column align-items-center my-cont">
+        <h3>Main currency</h3>
+        <div class="col-12">
+          <app-select [values]="currencies" [selectedItem]="initialCurrencyIndex" (selected)="setCurrency($event)">
+          </app-select>
         </div>
+      </div>
     </div>
+    <div class="col-12 d-flex w-100 flex-column align-items-center my-cont">
+      <h3>Add new member</h3>
+      <form class="col-12" #form="ngForm">
+        <div class="input-holder row">
+          <input type="text" class="form-control text-input col" placeholder="Name..." #userName ngModel required
+            name="new-user">
+          <app-button [disabled]="form.invalid" class="col-auto" color="#65cbc3" hover="#4c7783"
+            (click)="form.valid ? addNewMember(userName.value) : ''">
+            Add member
+          </app-button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
-  <app-loading [loading]="loading"></app-loading>
+<app-loading [loading]="loading"></app-loading>

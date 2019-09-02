@@ -50,4 +50,8 @@ app-button {
   .main{
       padding: 5em 2em;
   }
+
+  .form-container {
+    padding: 3rem .6rem;
+  }
 }

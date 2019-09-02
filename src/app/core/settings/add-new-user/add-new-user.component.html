@@ -1,0 +1,39 @@
+<div class="jumbotron">
+  <h1>Add new member</h1>
+</div>
+<div class="table-container">
+  <h3>Select which payments is {{ addUserService.name }} inclded in</h3>
+  <div class="buttons">
+    <app-button (click)="selectAll()">
+      Select all
+    </app-button>
+    <app-button-outline (click)="deselectAll()">
+      Deselect all
+    </app-button-outline>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <td></td>
+        <td>Name</td>
+        <td>Value</td>
+        <td>Date</td>
+        <td>Note</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td><app-checkbox [checked]="selectedPayments.includes(payment)" (checkedChange)="select(payment, $event)"></app-checkbox></td>
+        <td>{{ payment.member.name }}</td>
+        <td>{{ payment | valuePipe }}</td>
+        <td>{{ payment.date | myDate }}</td>
+        <td><span>{{ payment.note }}</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="save">
+  <app-button color="var(--blue)" hover="var(--dark-blue)" (click)="save()">
+    Save new member <i class="material-icons">check</i>
+  </app-button>
+</div>

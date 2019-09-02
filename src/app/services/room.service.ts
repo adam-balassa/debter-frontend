@@ -147,6 +147,11 @@ export class RoomService {
     .then(() => { this.room.next({...this.room.value, mainCurrency}); this.loadRoomDetails(); });
   }
 
+  public addNewMember(name: string, paymentsIncluded: Payment[]): Promise<any> {
+    console.log(name, paymentsIncluded);
+    return Promise.resolve();
+  }
+
   public reset() {
     this.room.next({
       payments: [],

@@ -21,6 +21,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { MessageBoxComponent } from './message-box/message-box.component';
 import { NotificationComponent } from './notification/notification.component';
 import { MemberComponent } from './member/member.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MemberComponent } from './member/member.component';
     LoadingComponent,
     MessageBoxComponent,
     NotificationComponent,
-    MemberComponent
+    MemberComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +70,8 @@ import { MemberComponent } from './member/member.component';
     HeaderPhoneComponent,
     LoadingComponent,
     MessageBoxComponent,
-    NotificationComponent
+    NotificationComponent,
+    CheckboxComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,23 @@
+.main-container {	
+  border-radius: 50%;
+	height: 1.4em;
+	width: 1.4em;
+	border: 1px solid var(--pink);
+	color: var(--pink);
+	background-color: white;
+	transition: all ease-in-out .16s;;
+	display: flex;
+	line-height: 0;
+	justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.main-container:not(.checked):hover {
+  background-color: var(--white);
+}
+
+.main-container.checked {
+  background-color: var(--pink);
+  color: white;
+}

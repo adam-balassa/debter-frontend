@@ -16,9 +16,9 @@ import { UploadComponent } from './core/upload/upload.component';
 import { DebtsComponent } from './core/debts/debts.component';
 import { SettingsComponent } from './core/settings/settings.component';
 import { NewRoomComponent } from './core/new-room/new-room.component';
-import { RoomService } from './services/room.service';
 import { CoreGuardService } from './core-guard.service';
 import { NewRoomGuardService } from './new-room-guard.service';
+import { AddNewUserComponent } from './core/settings/add-new-user/add-new-user.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'prefix', component: HomeComponent, children: [
@@ -38,7 +38,8 @@ const routes: Routes = [
     ]},
     { path: 'upload', component: UploadComponent },
     { path: 'debts', component: DebtsComponent },
-    { path: 'settings', component: SettingsComponent }
+    { path: 'settings', component: SettingsComponent, pathMatch: 'full' },
+    { path: 'settings/new-user', component: AddNewUserComponent }
   ]}
 ];
 
