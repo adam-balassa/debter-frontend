@@ -22,6 +22,13 @@ export class RoomService {
 
   constructor(private http: HttpClient, private cookieManager: CookieManager) { }
 
+  public getRoomName(roomKey: string): Promise<{roomKey: string, name: string}> {
+    return new Request<RoomDetails>(this.http).patch('/room/login', { roomKey })
+    .then<{roomKey: string, name: string}>((roomDetails: RoomDetails): {roomKey: string, name: string} => {
+      return { roomKey, name: roomDetails.name };
+    });
+  }
+
   public joinRoom(roomKey: string): Promise<Room> {
     const room: Room = this.room.value;
     return new Request<RoomDetails>(this.http).patch('/room/login', { roomKey })
