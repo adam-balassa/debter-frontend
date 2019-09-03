@@ -92,6 +92,8 @@ a, a:hover{
 
 app-button button:not(.absolute) i.fa{
   margin-left: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 app-button button:not(.absolute) .material-icons {
