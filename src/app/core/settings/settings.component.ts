@@ -39,7 +39,7 @@ export class SettingsComponent implements OnInit {
 
   addNewMember(name: string) {
     this.addUserService.name = name;
-    this.router.navigate(['new-user'], { relativeTo: this.link });
+    this.router.navigate(['new-member'], { relativeTo: this.link });
   }
 
 }

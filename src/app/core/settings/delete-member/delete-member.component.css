@@ -1,0 +1,32 @@
+.jumbotron{
+  padding: 7vh 10vw;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.page{
+  width: 100vw;
+  display: flex;
+  padding: 10vh 5vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+form{
+  padding: 5vh 5vw;
+  font-size: 1.5em;
+  width: 40vw;
+}
+.member-holder, .input-holder{
+  position: relative;
+  width: 100%;
+}
+.member-holder .text-input{
+  position: absolute;
+}
+@media screen and (max-width: 800px){
+  form{
+      width: 70%;
+  }
+}

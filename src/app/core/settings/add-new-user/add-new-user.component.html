@@ -2,7 +2,7 @@
   <h1>Add new member</h1>
 </div>
 <div class="table-container">
-  <h3>Select which payments is {{ addUserService.name }} inclded in</h3>
+  <h3>Select which payments is {{ addUserService.name }} included in</h3>
   <div class="buttons">
     <app-button (click)="selectAll()">
       Select all
@@ -37,3 +37,4 @@
     Save new member <i class="material-icons">check</i>
   </app-button>
 </div>
+<app-loading [loading]="loading"></app-loading>

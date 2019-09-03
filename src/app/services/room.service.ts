@@ -3,7 +3,8 @@ import { Subject, BehaviorSubject } from 'rxjs';
 import { Room, Member, Payment, Arrangement } from '../models/debter.model';
 import { Request } from '../models/request.model';
 import { HttpClient } from '@angular/common/http';
-import { FullRoomData, RoomDetails, UploadableMembers, UploadablePayment } from '../models/shared-interfaces.model';
+import { FullRoomData, RoomDetails, UploadableMembers,
+  UploadablePayment, UploadableMember } from '../models/shared-interfaces.model';
 import { UploadingPayment } from '../core/upload/upload.component';
 import { CookieManager } from './cookie-manager.service';
 
@@ -148,8 +149,14 @@ export class RoomService {
   }
 
   public addNewMember(name: string, paymentsIncluded: Payment[]): Promise<any> {
-    console.log(name, paymentsIncluded);
-    return Promise.resolve();
+    const member: UploadableMember = { roomKey: this.room.value.roomKey, payments: paymentsIncluded.map<string>(p => p.id), name };
+    return new Request(this.http).patch('/room/members', member)
+    .then(() => { this.loadRoomDetails(); });
+  }
+
+  public deleteMember(member: Member): Promise<any> {
+    return new Request(this.http).delete(`/room/${ this.room.value.roomKey }/members/${ member.id }`)
+    .then(() => { this.loadRoomDetails(); });
   }
 
   public reset() {

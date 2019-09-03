@@ -15,6 +15,7 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
   payments: Payment[];
   selectedPayments: Payment[] = [];
   subscription: Subscription;
+  loading = false;
   readonly template = [
     { align: 'left', ratio: 1 },
     { align: 'left', ratio: 3 },
@@ -41,12 +42,13 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
     if (select) {
       if (!this.selectedPayments.includes(payment)) this.selectedPayments.push(payment);
     } else {
-      if (this.selectedPayments.includes(payment)) this.selectedPayments.splice(this.selectedPayments.findIndex(p => p === payment), 1);
+      if (this.selectedPayments.includes(payment))
+        this.selectedPayments.splice(this.selectedPayments.findIndex(p => p === payment), 1);
     }
   }
 
   selectAll() {
-    this.selectedPayments = this.payments;
+    this.selectedPayments = [...this.payments];
   }
 
   deselectAll() {
@@ -54,7 +56,8 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    this.loading = true;
     this.roomSerice.addNewMember(this.addUserService.name, this.selectedPayments)
-    .then(() => { this.router.navigate(['../../'], {relativeTo: this.link}); });
+    .then(() => { this.loading = false; this.router.navigate(['../../'], {relativeTo: this.link}); });
   }
 }

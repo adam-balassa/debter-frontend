@@ -1,0 +1,28 @@
+<div class="jumbotron">
+  <h1>Delete members</h1>
+</div>
+<div class="page">
+  <h3 *ngIf="members.length === 0">You can't delete members from this room</h3>
+  <form #form="ngForm" *ngIf="members.length > 0">
+    <div class="members">
+        <div 
+          class="d-flex form-group w-100 member-holder"
+          *ngFor="let member of members"
+          disappearAnimation
+          >
+          <div class="w-100 d-flex" appearAnimation>
+            <div class="input-holder" disappearAnimation>
+              <input 
+                disabled
+                type="text"
+                [value]="member.name"
+                class="form-control text-input">
+            </div>
+            <span style="width: 1em"></span>
+            <app-button [absolute]="true" (click)="removeMember(member)"><i class="fa fa-close"></i></app-button>
+          </div>
+        </div>
+    </div>
+  </form>
+</div>
+<app-loading [loading]="loading"></app-loading>

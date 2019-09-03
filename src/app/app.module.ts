@@ -42,6 +42,7 @@ import { DebtComponent } from './core/debts/debt/debt.component';
 import { SettingsComponent } from './core/settings/settings.component';
 import { NewRoomComponent } from './core/new-room/new-room.component';
 import { AddNewUserComponent } from './core/settings/add-new-user/add-new-user.component';
+import { DeleteMemberComponent } from './core/settings/delete-member/delete-member.component';
 registerLocaleData (localeHungary, 'hu');
 registerLocaleData (localeUS, 'en');
 
@@ -77,7 +78,8 @@ registerLocaleData (localeUS, 'en');
     DebtsComponent,
     SettingsComponent,
     NewRoomComponent,
-    AddNewUserComponent
+    AddNewUserComponent,
+    DeleteMemberComponent
   ],
   imports: [
     BrowserModule,
