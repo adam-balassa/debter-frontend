@@ -11,7 +11,7 @@ import { AddUserService } from '../../services/add-user.service';
 })
 export class SettingsComponent implements OnInit {
 
-  readonly values: number[] = [1, 5, 10, 50, 100, 500, 1000];
+  readonly values: number[] = [0.1, 0.5, 1, 5, 10, 50, 100, 500, 1000];
   readonly currencies: string[] = ['HUF', 'EUR', 'USD'];
   initialValueIndex: number;
   initialCurrencyIndex: number;
