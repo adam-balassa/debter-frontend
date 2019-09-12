@@ -20,8 +20,22 @@ import { CoreGuardService } from './core-guard.service';
 import { NewRoomGuardService } from './new-room-guard.service';
 import { AddNewUserComponent } from './core/settings/add-new-user/add-new-user.component';
 import { DeleteMemberComponent } from './core/settings/delete-member/delete-member.component';
+import { QuizletComponent } from './quizlet/quizlet.component';
+import { CreateSetComponent } from './quizlet/create/create-set.component';
+import { EditComponent } from './quizlet/edit/edit.component';
+import { QuizletMainComponent } from './quizlet/quizlet-main/quizlet-main.component';
+import { QuizletLoginComponent } from './quizlet/quizlet-login/quizlet-login.component';
+import { QuizletSetsComponent } from './quizlet/quizlet-sets/quizlet-sets.component';
+import { QuizletGuardService } from './quizlet/quizlet.guard.service';
 
 const routes: Routes = [
+  { path: 'quizlet', component: QuizletMainComponent, pathMatch: 'prefix', children: [
+    { path: '', pathMatch: 'full', component: QuizletLoginComponent },
+    { path: 'sets', component: QuizletSetsComponent, canActivate: [QuizletGuardService] },
+    { path: 'create', component: CreateSetComponent, canActivate: [QuizletGuardService] },
+    { path: ':setId', component: QuizletComponent, canActivate: [QuizletGuardService] },
+    { path: ':setId/edit', component: EditComponent, canActivate: [QuizletGuardService] },
+  ]},
   { path: '', pathMatch: 'prefix', component: HomeComponent, children: [
     { path: '', pathMatch: 'full', component: IndexComponent },
     { path: 'contact', component: ContactComponent },

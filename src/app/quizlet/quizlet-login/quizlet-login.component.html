@@ -1,0 +1,12 @@
+<div class="main-container">
+  <div class="form-container">
+    <h2 class="title">Login with a user name</h2>
+    <form>
+      <div class="my-input-group">
+        <input type="text" class="my-input" #input>
+        <label class="my-input-label">Username</label>
+      </div>
+    </form>
+    <button class="my-button" (click)="login(input.value)">Login</button>
+  </div>
+</div>

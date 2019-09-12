@@ -1,0 +1,23 @@
+<div class="main-container">
+  <div class="top">
+    <span>A set címe</span>
+    <div class="controls">
+      <span [ngClass]="{'shuffled': shuffled}" (click)="shuffle()"><i class="fa fa-random"></i></span>
+    </div>
+  </div>
+  <div class="game">
+    <div class="word-card" (click)="turn()" [@turn]="side ? 'front' : 'back'">
+      <span>{{ cards[currentIndex][stateString] }}</span>
+    </div>
+    <div class="word-card" (click)="turn()" [@turn]="!side ? 'front' : 'back'">
+      <span>{{ cards[currentIndex][stateString] }}</span>
+    </div>
+  </div>
+  <div class="status">
+    <span>{{ currentIndex + 1 + ' / ' + cards.length }}</span>
+  </div>
+  <div class="card-controls">
+    <i class="fa fa-arrow-left" (click)="back()" [ngClass]="{'invalid': currentIndex === 0}"></i>
+    <i class="fa fa-arrow-right" (click)="forward()" [ngClass]="{'invalid': currentIndex === cards.length-1}"></i>
+  </div>
+</div>

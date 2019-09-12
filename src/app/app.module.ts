@@ -43,6 +43,7 @@ import { SettingsComponent } from './core/settings/settings.component';
 import { NewRoomComponent } from './core/new-room/new-room.component';
 import { AddNewUserComponent } from './core/settings/add-new-user/add-new-user.component';
 import { DeleteMemberComponent } from './core/settings/delete-member/delete-member.component';
+import { QuizletModule } from './quizlet/quizlet.module';
 registerLocaleData (localeHungary, 'hu');
 registerLocaleData (localeUS, 'en');
 
@@ -88,7 +89,8 @@ registerLocaleData (localeUS, 'en');
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    QuizletModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'hu' }],
   bootstrap: [AppComponent]

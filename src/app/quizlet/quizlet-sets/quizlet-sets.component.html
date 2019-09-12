@@ -1,0 +1,11 @@
+<div class="main-container">
+  <div class="top">
+    <span>Username's sets</span>
+  </div>
+  <div class="sets">
+    <div class="set" *ngFor="let set of sets" [routerLink]="'/quizlet/' + set.id">
+      <span> {{ set.name }} </span>
+      <span class="edit" [routerLink]="'/quizlet/' + set.id + '/edit'"><i class="fa fa-edit"></i></span>
+    </div>
+  </div>
+</div>

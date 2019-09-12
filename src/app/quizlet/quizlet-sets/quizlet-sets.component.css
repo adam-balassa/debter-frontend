@@ -1,0 +1,59 @@
+
+.top {
+  width: 100%;
+  padding: 2rem 3rem;
+  box-shadow: var(--shadow);
+  font-size: 1.3rem;
+  font-weight: 700;
+  background-color: white;
+  color: #555;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+	z-index: 100;
+}
+
+.sets {
+  width: 100vw;
+  padding: 2rem 10vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.set {
+  margin: 1rem;
+  box-shadow: var(--shadow);
+  height: 12rem;
+  width: 17rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem;
+  position: relative;
+  cursor: pointer;
+  transition: all ease-in-out .2s;
+}
+
+.set:hover {
+  font-size: 1.5rem;
+}
+
+.edit {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.fa {
+  transition: all ease-in-out .2s;
+  cursor: pointer;
+}
+
+.fa:hover {
+  color: #3ccfcf;
+}

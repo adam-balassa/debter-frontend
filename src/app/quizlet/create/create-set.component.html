@@ -1,0 +1,42 @@
+<div class="main-container">
+  <div class="create-new">
+    <span>Create a new study set</span>
+    <button class="my-button" (click)="save()">Save</button>
+  </div>
+  <form class="title" ngForm>
+    <div class="my-input-group">
+      <input type="text" class="my-input" [(ngModel)]="title" name="title">
+      <label>title</label>
+    </div>
+  </form>
+  <form class="words"ngForm>
+    <div class="word-card" *ngFor="let card of cards">
+      <div class="word-header">
+        <div class="index">{{ card.index }}</div>
+        <div class="delete">
+          <i class="fa fa-trash"  (click)="delete(card)"></i>
+        </div>
+      </div>
+      <div class="word-card-body row" @appear>
+        <div class="col-4">
+          <div class="my-input-group">
+            <input type="text" class="my-input" [name]="'first' + card.index" [(ngModel)]="card.first" (change)="change(card, 1)">
+            <label>First term</label>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="my-input-group">
+            <input type="text" class="my-input" [name]="'second' + card.index" [(ngModel)]="card.second" (change)="change(card, 1)">
+            <label>Second term</label>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="my-input-group">
+            <input type="text" class="my-input" [name]="'third' + card.index" [(ngModel)]="card.third" (change)="change(card, 1)">
+            <label>Third term</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

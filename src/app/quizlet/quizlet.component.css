@@ -1,0 +1,94 @@
+.create-new {
+  width: 100%;
+  padding: 2rem 3rem;
+  box-shadow: var(--shadow);
+  font-size: 1.3rem;
+  font-weight: 700;
+  background-color: white;
+  color: #555;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+	z-index: 100;
+}
+
+.top {
+  width: 100%;
+  padding: 2rem 3rem;
+  box-shadow: var(--shadow);
+  font-size: 1.3rem;
+  font-weight: 700;
+  background-color: white;
+  color: #555;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+	z-index: 100;
+}
+.title {
+  padding: 3rem;
+}
+
+.top .fa {
+  cursor: pointer;
+}
+
+.game {
+  padding-top: 4rem;
+  display: flex;
+  justify-content: center;
+  height: calc(40vh + 4rem);
+  overflow: hidden;
+  width: 100%;
+}
+
+.word-card {
+  height: 40vh;
+  width: 25rem;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  padding:  0 1.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+}
+
+.status {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
+  padding: 1.5rem 1rem;
+}
+
+.card-controls {
+  display: flex;
+  justify-content: center;
+}
+.card-controls > .fa {
+  margin: 0 1rem;
+  font-size: 1.6rem;
+  color: #555;
+  cursor: pointer;
+  transition: all ease-in-out .2s;
+}
+
+.invalid {
+  color: #aaa;
+}
+
+.shuffled {
+  color: #3ccfcf;
+}
+
+.card-controls > .fa:hover {
+  color: #3ccfcf;
+}
