@@ -38,7 +38,7 @@ export class MyDatePipe implements PipeTransform {
   }
 
   today(date: Date): string {
-    return 'Today, ' + this.datePipe.transform(date, 'H:mm:ss');
+    return this.datePipe.transform(date, 'H:mm:ss');
   }
 
   old(date: Date): string {
