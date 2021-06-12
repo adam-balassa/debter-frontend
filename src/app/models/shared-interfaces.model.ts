@@ -1,5 +1,4 @@
 export interface UploadablePayment {
-  roomKey: string;
   value: number;
   currency: string;
   note: string;
@@ -12,7 +11,6 @@ export interface UploadableRoom {
 }
 
 export interface UploadableMembers {
-  roomKey: string;
   members: string[];
 }
 

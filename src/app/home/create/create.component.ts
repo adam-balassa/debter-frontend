@@ -26,6 +26,8 @@ export class CreateComponent implements OnInit {
     if (this.form.invalid) return;
     this.roomService.createRoom(title)
     .then((room: Room) => {
+      console.log(room);
+      
       this.cookieService.addRoom(room.roomKey, title);
       this.router.navigateByUrl(`/room/${room.roomKey}/members`);
     })

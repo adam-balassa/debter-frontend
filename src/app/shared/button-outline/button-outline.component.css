@@ -10,6 +10,7 @@ button{
     cursor: pointer;
     transition: all ease-in-out .12s;
     display: flex;
+    align-items: center;
 }
 
 button > span{
