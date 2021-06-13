@@ -13,10 +13,10 @@
   </div>
   <div class="placeholder"></div>
   <div class="copy-holder">
-    <input type="text" class="project-id" [value]="(project.room | async).roomKey" #projectIdInput>
+    <input type="text" class="project-id" [value]="'https://debter.netlify.app/room/' + (project.room | async).roomKey" #projectIdInput>
     <div class="copy" (click)="copy()">
       <i class="fa fa-clipboard"></i>
-      <span>Copy room id</span>
+      <span>Copy join link</span>
     </div>
   </div>
   <div class="table-container">

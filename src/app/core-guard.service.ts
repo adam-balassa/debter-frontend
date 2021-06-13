@@ -12,8 +12,8 @@ export class CoreGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean | Promise<boolean> {
     return new Promise(resolve => {
       if (this.room.room.value.roomKey === route.params.roomKey) return resolve(true);
-      this.router.navigateByUrl('/');
-      resolve(false);
+      this.room.room.next({ ...this.room.room.value, roomKey: route.params.roomKey })
+      resolve(true);
     });
   }
 }
