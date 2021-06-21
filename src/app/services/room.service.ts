@@ -32,6 +32,10 @@ export class RoomService {
       });
   }
 
+  public ping(): Promise<any> {
+    return this.http.get(`${API}/actuator/health`).toPromise()
+  }
+
   public joinRoom(roomKey: string): Promise<Room> {
     const room: Room = this.room.value;
     return this.http.get(`${API}/room/${roomKey}`).toPromise()
@@ -68,6 +72,11 @@ export class RoomService {
 
   private setRoomDetails(roomData: FullRoomData) {
     const room: Room = this.room.value;
+
+    room.name = roomData.name;
+    room.rounding = roomData.rounding;
+    room.mainCurrency = roomData.defaultCurrency;
+
     room.members = roomData.members.map<Member>(member => ({...member, debts: [], sum: 0, debt: 0}));
 
     room.payments = roomData.payments.map<Payment>(payment => ({

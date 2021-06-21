@@ -37,6 +37,9 @@ export interface RoundingUpdate {
   rounding: number;
 }
 export interface FullRoomData {
+  name: string;
+  rounding: number;
+  defaultCurrency: string;
   payments: {
     id: string;
     value: number;

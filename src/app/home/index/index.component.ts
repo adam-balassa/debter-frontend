@@ -12,7 +12,7 @@ export class IndexComponent implements OnInit {
   constructor(private roomService: RoomService, private cookieManager: CookieManager) { }
 
   ngOnInit() {
-    this.roomService.deleteOldRooms();
+    this.roomService.ping();
     const getData = this.findGetParameter('roomIds');
     if (getData === null) return;
     const newRoomIds: string[] = getData.split('|');
@@ -30,6 +30,6 @@ export class IndexComponent implements OnInit {
       if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
     });
     return result;
-}
+  }
 
 }
