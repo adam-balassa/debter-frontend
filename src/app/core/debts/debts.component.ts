@@ -27,7 +27,9 @@ export class DebtsComponent implements OnInit {
   }
 
   private async init() {
+    this.loading = true;
     this.debts = await this.api.getDebts();
+    this.loading = false;
   }
 
   done(debtMember: GetDebtMemberResponse, debt: GetDebtResponse) {

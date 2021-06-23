@@ -19,15 +19,16 @@ export class HistoryAllComponent implements OnInit {
 
   payments: GetPaymentsResponse = { activePayments: [], deletedPayments: [] };
   ordered: {cell: number, asc: boolean} = {cell: 2, asc: false};
+  loading = false;
 
   constructor(private api: ApiService) { }
 
   async ngOnInit() {
+    this.loading = true;
     this.payments = await this.api.getPayments();
-    console.log(this.payments);
+    this.loading = false;
     this.order(this.ordered.cell);
   }
-
 
   order(n: number) {
     if (n === this.ordered.cell) this.ordered.asc = !this.ordered.asc;

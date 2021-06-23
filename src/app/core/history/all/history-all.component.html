@@ -16,5 +16,6 @@
       <app-details [payment]="payment"></app-details>
     </app-table-row>
   </app-table>
-  <h3 *ngIf="payments.activePayments.length === 0">No payments found for this room</h3>
+  <h3 *ngIf="!loading && payments.activePayments.length === 0">No payments found for this room</h3>
 </div>
+<app-loading [loading]="loading"></app-loading>

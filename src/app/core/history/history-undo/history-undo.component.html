@@ -1,5 +1,5 @@
 <div class="table-container">
-  <h2>{{payments.deletedPayments.length > 0 ? 'Deleted payments' : 'No deleted payments found for this room'}}</h2>
+  <h2>{{payments.deletedPayments.length > 0 || loading ? 'Deleted payments' : 'No deleted payments found for this room'}}</h2>
   <app-table *ngIf="payments.deletedPayments.length > 0">
     <app-table-row
       class="table-header"
@@ -21,7 +21,7 @@
 </div>
 
 <div class="table-container">
-  <h2>{{payments.activePayments.length > 0 ? 'Valid payments' : 'No valid payments found for this room'}}</h2>
+  <h2>{{payments.activePayments.length > 0 || loading ? 'Valid payments' : 'No valid payments found for this room'}}</h2>
   <app-table *ngIf="payments.activePayments.length > 0">
     <app-table-row
       class="table-header"

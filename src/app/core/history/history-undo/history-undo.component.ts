@@ -36,7 +36,9 @@ export class HistoryUndoComponent implements OnInit {
   }
 
   async init() {
+    this.loading = true
     this.payments = await this.api.getPayments();
+    this.loading = false
   }
 
   revive(id: string) {

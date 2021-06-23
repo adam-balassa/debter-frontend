@@ -3,7 +3,7 @@
 </div>
 <div class="w-100 d-flex justify-content-center">
   <div class="table-container">
-    <div *ngIf="debts.debts.length === 0">
+    <div *ngIf="debts.debts.length === 0 && !loading">
       <h3>All debts are arranged</h3>
     </div>
     <app-table *ngIf="debts.debts.length !== 0">
