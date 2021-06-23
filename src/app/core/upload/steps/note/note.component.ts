@@ -8,7 +8,7 @@ import { UploadItemComponent } from '../../upload-item/upload-item.component';
 })
 export class NoteComponent extends UploadItemComponent implements OnInit {
 
-  @ViewChild('noteForm') noteForm;
+  @ViewChild('noteForm', { static: true }) noteForm;
   constructor() {
     super();
   }

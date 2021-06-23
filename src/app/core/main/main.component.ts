@@ -12,7 +12,7 @@ import { RoomSummary } from 'src/app/models/debter-interfaces.model';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  @ViewChild('projectIdInput') projectIdInput: ElementRef;
+  @ViewChild('projectIdInput', { static: true }) projectIdInput: ElementRef;
   tableTemplate = [
     {align: 'left', ratio: 3},
     {align: 'right', ratio: 2},

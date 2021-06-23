@@ -16,9 +16,9 @@ interface HeaderItem {
 export class HeaderPhoneComponent implements OnInit, OnDestroy {
 
   @Input('items') items: HeaderItem[];
-  @ViewChild('check') check;
-  @ViewChild('menu') menu;
-  @ViewChild('nav') nav;
+  @ViewChild('check', { static: true }) check;
+  @ViewChild('menu', { static: false }) menu;
+  @ViewChild('nav', { static: true }) nav;
   open: boolean;
   subscription: Subscription;
   constructor(private router: Router) { }

@@ -12,7 +12,7 @@ import { CreateRoomResponse } from 'src/app/models/debter-interfaces.model';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  @ViewChild('createForm') form;
+  @ViewChild('createForm', { static: true }) form;
   username: string;
   message = 'Title must be at least 6 characters';
   error = false;
