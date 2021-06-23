@@ -3,7 +3,7 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
 export interface CellConfig {
   ratio: number;
   align: string;
-  class: string;
+  class?: string;
 }
 
 @Component({
@@ -17,7 +17,7 @@ export class TableCellComponent implements OnInit {
 
   constructor(private element: ElementRef) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.element.nativeElement.style.flex = this.cellConfiguration.ratio
   }
 

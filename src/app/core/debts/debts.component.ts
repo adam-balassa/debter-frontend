@@ -1,14 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RoomService } from 'src/app/services/room.service';
-import { Member, Arrangement } from 'src/app/models/debter.model';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
+import { GetDebtMemberResponse, GetDebtResponse, GetDebtsResponse } from 'src/app/models/debter-interfaces.model';
 
 @Component({
   selector: 'app-debts',
   templateUrl: './debts.component.html',
   styleUrls: ['./debts.component.css']
 })
-export class DebtsComponent implements OnInit, OnDestroy {
+export class DebtsComponent implements OnInit {
 
   template = [
     { align: 'left', ratio: 3 },
@@ -17,27 +16,31 @@ export class DebtsComponent implements OnInit, OnDestroy {
     { align: 'left', ratio: 1 }
   ];
 
-  members: Member[];
-  subscription: Subscription;
+  debts: GetDebtsResponse = { currency: '', debts: [] };
   loading = false;
 
-  constructor(public roomService: RoomService) {
+  constructor(private api: ApiService) {
   }
 
   ngOnInit() {
-    this.members = this.roomService.room.value.members.filter(member => member.debts.length > 0);
-    this.subscription = this.roomService.room.subscribe(room => this.members = room.members.filter(member => member.debts.length > 0));
+    this.init();
   }
 
-  done(arrangment: Arrangement) {
+  private async init() {
+    this.debts = await this.api.getDebts();
+  }
+
+  done(debtMember: GetDebtMemberResponse, debt: GetDebtResponse) {
     this.loading = true;
-    this.roomService.arrangeDebt(arrangment)
-    .then(() => {this.loading = false; });
+    this.api.uploadPayment({
+      memberId: debtMember.id,
+      included: [debt.payeeId],
+      value: debt.value,
+      currency: this.debts.currency,
+      note: `${debt.value} ${this.debts.currency} debt arrangement between ${debtMember.name} and ${debt.payeeName}`
+    }).then(() => {
+      this.loading = false;
+      this.init();
+    });
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-
 }

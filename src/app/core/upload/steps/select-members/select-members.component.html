@@ -1,10 +1,10 @@
 <div>
     <div class="title">Select who paid</div>
     <div class="users">
-        <app-member 
-          [hoverable]="true" 
-          [selected]="activeMember === member" 
-          *ngFor="let member of members" 
+        <app-member
+          [hoverable]="true"
+          [selected]="activeMemberId === member.id"
+          *ngFor="let member of members"
           (click)="setActiveUser(member)">
             {{ member.name }}
         </app-member>

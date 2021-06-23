@@ -29,14 +29,14 @@ const duration = 300;
 export class SlideComponent implements OnInit {
   state: string;
   displayed: boolean = false;
-  @Input('slideSequence') slideSequence: number;
 
+  @Input('slideSequence') slideSequence: number;
   @Input('activeSlide') set activeSlide(activeSlide: number){
-    activeSlide == this.slideSequence ? this.comeIn(activeSlide) : this.goOut(activeSlide);        
+    activeSlide == this.slideSequence ? this.comeIn(activeSlide) : this.goOut(activeSlide);
   };
 
   constructor() { }
-  
+
   comeIn(activeSlide: number){
     this.displayed = true;
     setTimeout(e => {
@@ -54,7 +54,7 @@ export class SlideComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
 }

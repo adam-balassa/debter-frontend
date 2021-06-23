@@ -1,18 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Payment, Room } from 'src/app/models/debter.model';
-import { RoomService } from 'src/app/services/room.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GetPaymentsResponse } from 'src/app/models/debter-interfaces.model';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-history-undo',
   templateUrl: './history-undo.component.html',
   styleUrls: ['./history-undo.component.css']
 })
-export class HistoryUndoComponent implements OnInit, OnDestroy {
-
-  deletedPayments: Payment[];
-  validPayments: Payment[];
-  subscriptions: Subscription[] = [];
+export class HistoryUndoComponent implements OnInit {
 
   readonly template = [
     { align: 'left', ratio: 3 },
@@ -29,38 +25,30 @@ export class HistoryUndoComponent implements OnInit, OnDestroy {
     displayed: false
   };
 
+  payments: GetPaymentsResponse = { activePayments: [], deletedPayments: [] };
   loading = false;
 
 
-  constructor(private room: RoomService) {
-
-  }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.subscriptions.push(this.room.room.subscribe(room => {
-      this.init(room);
-    }));
+    this.init();
   }
 
-  init(room: Room) {
-    this.validPayments = room.payments.filter(payment => payment.active).sort((b, a) => a.date.getTime() - b.date.getTime());
-    this.deletedPayments = room.payments.filter(payment => !payment.active).sort((b, a) => a.date.getTime() - b.date.getTime());
+  async init() {
+    this.payments = await this.api.getPayments();
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach(s => s.unsubscribe());
-  }
-
-  revive(payment: Payment) {
+  revive(id: string) {
     this.loading = true;
-    this.room.revivePayment(payment)
-    .then(() => { this.loading = false; });
+    this.api.revivePayment(id)
+    .then(() => { this.loading = false; this.init(); });
   }
 
-  delete(payment: Payment) {
+  delete(id: string) {
     this.loading = true;
-    this.room.deletePayment(payment)
-    .then(() => { this.loading = false; });
+    this.api.deletePayment(id)
+    .then(() => { this.loading = false; this.init(); });
   }
 
 

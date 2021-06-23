@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RoomService } from 'src/app/services/room.service';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({

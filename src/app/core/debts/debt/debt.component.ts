@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Arrangement } from 'src/app/models/debter.model';
-import { RoomService } from 'src/app/services/room.service';
+import { GetDebtResponse } from 'src/app/models/debter-interfaces.model';
 
 @Component({
   selector: 'app-debt',
@@ -9,10 +8,11 @@ import { RoomService } from 'src/app/services/room.service';
 })
 export class DebtComponent implements OnInit {
 
-  @Input() debt: Arrangement;
+  @Input() debt: GetDebtResponse;
+  @Input() currency: string;
   @Output() done = new EventEmitter<void>();
 
-  constructor(public roomService: RoomService) { }
+  constructor() { }
 
   ngOnInit() {
   }

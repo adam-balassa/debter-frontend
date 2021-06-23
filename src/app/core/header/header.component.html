@@ -1,44 +1,44 @@
 <header>
   <app-header-phone [items]="[
-    {title: 'Home', routerLink: '/room/' + (roomService.room | async).roomKey},
-    {title: 'History', routerLink: '/room/' + (roomService.room | async).roomKey + '/history'},
-    {title: 'Upload', routerLink: '/room/' + (roomService.room | async).roomKey + '/upload'},
-    {title: 'Debts', routerLink: '/room/' + (roomService.room | async).roomKey + '/debts'},
-    {title: 'Settings', routerLink: '/room/' + (roomService.room | async).roomKey + '/settings'}
+    {title: 'Home', routerLink: '/room/' + api.roomKey},
+    {title: 'History', routerLink: '/room/' + api.roomKey + '/history'},
+    {title: 'Upload', routerLink: '/room/' + api.roomKey + '/upload'},
+    {title: 'Debts', routerLink: '/room/' + api.roomKey + '/debts'},
+    {title: 'Settings', routerLink: '/room/' + api.roomKey + '/settings'}
   ]">
   <div class="phone-button">
     <app-button routerLink="/">
-      Exit {{ (roomService.room | async).roomKey }}
+      Exit {{ api.roomKey }}
     </app-button>
   </div>
 </app-header-phone>
   <div class="header-content">
     <div class="home">
-      <a [routerLink]="'/room/' + (roomService.room | async).roomKey" class="hoverable">Debter</a>
+      <a [routerLink]="'/room/' + api.roomKey" class="hoverable">Debter</a>
     </div>
     <div class="navigation">
       <div class="pages">
-        <app-header-item 
-          [routerLink]="'/room/' + (roomService.room | async).roomKey"
-          routerLinkActive="active" 
+        <app-header-item
+          [routerLink]="'/room/' + api.roomKey"
+          routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}"
           >Home</app-header-item>
-        <app-header-item 
-          [routerLink]="'/room/' + (roomService.room | async).roomKey + '/history'"
+        <app-header-item
+          [routerLink]="'/room/' + api.roomKey + '/history'"
           routerLinkActive="active" >History</app-header-item>
-        <app-header-item 
-          [routerLink]="'/room/' + (roomService.room | async).roomKey + '/upload'"
+        <app-header-item
+          [routerLink]="'/room/' + api.roomKey + '/upload'"
           routerLinkActive="active" >Upload</app-header-item>
-        <app-header-item 
-          [routerLink]="'/room/' + (roomService.room | async).roomKey + '/debts'"
+        <app-header-item
+          [routerLink]="'/room/' + api.roomKey + '/debts'"
           routerLinkActive="active">Debts</app-header-item>
-        <app-header-item 
-          [routerLink]="'/room/' + (roomService.room | async).roomKey + '/settings'"
+        <app-header-item
+          [routerLink]="'/room/' + api.roomKey + '/settings'"
           routerLinkActive="active" >Settings</app-header-item>
       </div>
       <div class="continue-to-app-container">
         <app-button routerLink="/">
-            Exit {{ (roomService.room | async).roomKey }}
+            Exit {{ api.roomKey }}
         </app-button>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <img src="../../../../assets/images/main.jpg" alt="Main image">
   </div>
   <div class="project-title">
-    <span>{{ (roomSummary | async).name }}</span>
+    <span>{{ roomSummary.name }}</span>
   </div>
 </div>
 
@@ -13,7 +13,7 @@
   </div>
   <div class="placeholder"></div>
   <div class="copy-holder">
-    <input type="text" class="project-id" [value]="'https://debter.netlify.app/room/' + (roomSummary | async).roomKey" #projectIdInput>
+    <input type="text" class="project-id" [value]="'https://debter.netlify.app/room/' + roomSummary.roomKey" #projectIdInput>
     <div class="copy" (click)="copy()">
       <i class="fa fa-clipboard"></i>
       <span>Copy join link</span>
@@ -29,26 +29,26 @@
       </app-table-row>
 
       <app-table-row
-        *ngFor="let member of (roomSummary | async).memberSummary"
+        *ngFor="let member of roomSummary.memberSummary"
         [cellsTemplate]="[
           {align: 'left', ratio: 3},
           {align: 'right', ratio: 2},
           {align: 'right', ratio: 2, class: member.debt > 0 ? 'pink' : 'blue'}]"
         [cells]="[
           member.name,
-          {value: member.sum, currency: (roomSummary | async).currency } | valuePipe,
-          {value: member.debt, currency: (roomSummary | async).currency } | valuePipe]"
+          {value: member.sum, currency: roomSummary.currency } | valuePipe,
+          {value: member.debt, currency: roomSummary.currency } | valuePipe]"
         [collapsable]="false">
       </app-table-row>
 
       <app-table-row
         class="table-footer"
         [cellsTemplate]="tableTemplate"
-        [cells]="['&sum;', {value: (roomSummary | async).sum, currency: (roomSummary | async).currency } | valuePipe, '']"
+        [cells]="['&sum;', {value: roomSummary.sum, currency: roomSummary.currency } | valuePipe, '']"
         [collapsable]="false">
       </app-table-row>
     </app-table>
   </div>
 </div>
-<app-notification [(show)]="shown">{{ 'https://debter.netlify.app/room/' + (roomSummary | async).roomKey }} copied to clipboard</app-notification>
+<app-notification [(show)]="shown">{{ 'https://debter.netlify.app/room/' + roomSummary.roomKey }} copied to clipboard</app-notification>
 <app-loading [loading]="loading"></app-loading>

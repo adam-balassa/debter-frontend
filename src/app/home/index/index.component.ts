@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomService } from 'src/app/services/room.service';
+import { ApiService } from 'src/app/services/api.service';
 import { CookieManager } from 'src/app/services/cookie-manager.service';
 
 @Component({
@@ -9,15 +9,15 @@ import { CookieManager } from 'src/app/services/cookie-manager.service';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(private roomService: RoomService, private cookieManager: CookieManager) { }
+  constructor(private api: ApiService, private cookieManager: CookieManager) { }
 
   ngOnInit() {
-    this.roomService.ping();
+    this.api.ping();
     const getData = this.findGetParameter('roomIds');
     if (getData === null) return;
     const newRoomIds: string[] = getData.split('|');
     const rooms = this.cookieManager.loadRooms();
-    newRoomIds.filter(roomId => rooms.every(room => room.roomKey !== roomId)).forEach(roomId => this.roomService.getRoomName(roomId).then(
+    newRoomIds.filter(roomId => rooms.every(room => room.roomKey !== roomId)).forEach(roomId => this.api.getRoomSummary(roomId).then(
       result => this.cookieManager.addRoom(result.roomKey, result.name)
     ));
   }

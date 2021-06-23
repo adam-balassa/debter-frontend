@@ -3,7 +3,6 @@ import { QuizletSet } from './quizlet-sets/quizlet-sets.component';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { QuizletCard } from './edit/edit.component';
-import { setRootDomAdapter } from '@angular/platform-browser/src/dom/dom_adapter';
 
 @Injectable({
   providedIn: 'root'

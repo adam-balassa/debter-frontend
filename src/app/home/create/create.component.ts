@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieManager } from './../../services/cookie-manager.service';
-import { RoomService } from 'src/app/services/room.service';
-import { Room } from 'src/app/models/debter.model';
 import { ApiService } from 'src/app/services/api.service';
-import { CreateRoomResponse } from 'src/app/models/debter-interfaces.model';
 
 @Component({
   selector: 'app-create',

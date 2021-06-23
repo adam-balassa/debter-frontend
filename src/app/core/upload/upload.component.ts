@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RoomService } from 'src/app/services/room.service';
 import { Member } from 'src/app/models/debter.model';
+import { ApiService } from 'src/app/services/api.service';
+import { AddPaymentRequest } from 'src/app/models/debter-interfaces.model';
 
 export interface UploadingPayment {
   value: number;
@@ -21,7 +22,7 @@ export class UploadComponent implements OnInit {
   slides = ['Who paid?', 'How much?', 'Add note', 'Who\'s included?'];
   activeSlide = 0;
   mayContinue: boolean = false;
-  payment: UploadingPayment;
+  payment: AddPaymentRequest;
   loading: boolean = false;
   message = {
     content: '',
@@ -30,12 +31,12 @@ export class UploadComponent implements OnInit {
     displayed: false
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private roomService: RoomService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
     this.payment = {
       value: 0,
-      member: null,
+      memberId: '',
       note: '',
       currency: 'HUF',
       included: []
@@ -54,7 +55,7 @@ export class UploadComponent implements OnInit {
   finished() {
     if (!this.mayContinue) return;
     this.loading = true;
-    this.roomService.uploadNewPayment(this.payment)
+    this.api.uploadPayment(this.payment)
     .then(() => { this.router.navigate(['../'], { relativeTo: this.route }); });
   }
 

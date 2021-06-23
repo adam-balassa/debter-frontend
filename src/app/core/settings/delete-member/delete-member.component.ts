@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, of } from 'rxjs';
 import { AddUserService } from 'src/app/services/add-user.service';
-import { RoomService } from 'src/app/services/room.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Payment, Member, Room } from 'src/app/models/debter.model';
 
 @Component({
@@ -23,13 +21,10 @@ export class DeleteMemberComponent implements OnInit, OnDestroy {
     { align: 'left', ratio: 1 }
   ];
   constructor(
-    public addUserService: AddUserService,
-    private roomSerice: RoomService,
-    private router: Router,
-    private link: ActivatedRoute) { }
+    public addUserService: AddUserService) { }
 
   ngOnInit() {
-    this.subscription = this.roomSerice.room.subscribe(room => { this.init(room); });
+    // this.subscription = this.roomSerice.room.subscribe(room => { this.init(room); });
   }
 
   init(room: Room) {
@@ -41,7 +36,7 @@ export class DeleteMemberComponent implements OnInit, OnDestroy {
 
   removeMember(member: Member) {
     this.loading = true;
-    this.roomSerice.deleteMember(member).then(() => { this.loading = false; });
+    // this.roomSerice.deleteMember(member).then(() => { this.loading = false; });
   }
 
   ngOnDestroy() {

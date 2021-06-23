@@ -4,7 +4,7 @@
             {{ payment.note }}
         </span>
         <span class="details-light">
-            {{ payment.date | date:'y. MMM d. H:mm' }} - {{ payment.member.name }}
+            {{ payment.date | date:'y. MMM d. H:mm' }} - {{ payment.memberName }}
         </span>
     </div>
     <div class="details-value-container">
@@ -15,7 +15,7 @@
 </div>
 <div class="separator"></div>
 <div class="details-users">
-    <app-member *ngFor="let member of members" [selected]="!payment.excluded.includes(member)">
-        <span>{{ member.name }}</span>
+    <app-member *ngFor="let member of payment.includedMembers" [selected]="member.included">
+        <span>{{ member.memberName }}</span>
     </app-member>
 </div>

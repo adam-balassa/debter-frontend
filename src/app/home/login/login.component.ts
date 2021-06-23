@@ -2,7 +2,6 @@ import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from 'events';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CookieManager } from './../../services/cookie-manager.service';
-import { RoomService } from 'src/app/services/room.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     const roomKey = this.form.value.roomIdInput;
     this.api.roomKey = roomKey;
-    this.api.getRoomSummary().toPromise().then(() => {
+    this.api.getRoomSummary().then(() => {
       this.router.navigateByUrl(`/room/${roomKey}`);
     })
     .catch(error => {

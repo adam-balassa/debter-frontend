@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RoomService } from 'src/app/services/room.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { RoomService } from 'src/app/services/room.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public roomService: RoomService) {}
+  constructor(public api: ApiService) {}
 
   ngOnInit() {
   }

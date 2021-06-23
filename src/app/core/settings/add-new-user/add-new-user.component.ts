@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AddUserService } from '../../../services/add-user.service';
 import { Payment } from 'src/app/models/debter.model';
-import { RoomService } from 'src/app/services/room.service';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -25,13 +24,12 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
   ];
   constructor(
     public addUserService: AddUserService,
-    private roomSerice: RoomService,
     private router: Router,
     private link: ActivatedRoute) { }
 
   ngOnInit() {
-    this.payments = this.roomSerice.room.value.payments;
-    this.subscription = this.roomSerice.room.subscribe(room => this.payments = room.payments);
+    // this.payments = this.roomSerice.room.value.payments;
+    // this.subscription = this.roomSerice.room.subscribe(room => this.payments = room.payments);
   }
 
   ngOnDestroy() {
@@ -57,7 +55,7 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
 
   save() {
     this.loading = true;
-    this.roomSerice.addNewMember(this.addUserService.name, this.selectedPayments)
-    .then(() => { this.loading = false; this.router.navigate(['../../'], {relativeTo: this.link}); });
+    // this.roomSerice.addNewMember(this.addUserService.name, this.selectedPayments)
+    // .then(() => { this.loading = false; this.router.navigate(['../../'], {relativeTo: this.link}); });
   }
 }

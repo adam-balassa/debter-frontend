@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomService } from '../services/room.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +8,10 @@ import { RoomService } from '../services/room.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private roomService: RoomService) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.roomService.reset();
+    this.api.roomKey = null;
   }
 
 }

@@ -1,20 +1,20 @@
 <div class="table-container">
-  <app-table *ngIf="payments.length > 0">
-    <app-table-row 
-      class="table-header" 
-      [cellsTemplate]="template" 
+  <app-table *ngIf="payments.activePayments.length > 0">
+    <app-table-row
+      class="table-header"
+      [cellsTemplate]="template"
       [cells]="['Name', 'Paid', 'Date', 'Note', '']"
       (cellClicked)="order($event)"
       [collapsable]="false">
     </app-table-row>
 
-    <app-table-row 
-      *ngFor="let payment of payments" 
-      [cellsTemplate]="template" 
-      [cells]="[payment.member.name, payment | valuePipe, payment.date | myDate, payment.note]"
+    <app-table-row
+      *ngFor="let payment of payments.activePayments"
+      [cellsTemplate]="template"
+      [cells]="[payment.memberName, payment | valuePipe, payment.date | myDate, payment.note]"
       [collapsable]="true">
-      <app-details [payment]="payment" [members]="members"></app-details>
+      <app-details [payment]="payment"></app-details>
     </app-table-row>
   </app-table>
-  <h3 *ngIf="payments.length === 0">No payments found for this room</h3>
+  <h3 *ngIf="payments.activePayments.length === 0">No payments found for this room</h3>
 </div>

@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UploadItemComponent } from '../../upload-item/upload-item.component';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Member } from 'src/app/models/debter.model';
-import { RoomService } from 'src/app/services/room.service';
-import { Subscription } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-included',
@@ -20,20 +18,19 @@ import { Subscription } from 'rxjs';
     ])
   ]
 })
-export class IncludedComponent extends UploadItemComponent implements OnInit, OnDestroy {
+export class IncludedComponent extends UploadItemComponent implements OnInit {
   everybodyIncluded: boolean = true;
-  selectedMembers: Member[] = [];
-  members: Member[] = [];
-  subscription: Subscription;
+  selectedMembers: {id: string, name: string}[] = [];
+  members: {id: string, name: string}[];
 
-  constructor(private roomService: RoomService) {
+  constructor(private api: ApiService) {
     super();
   }
 
   ngOnInit() {
-    this.subscription = this.roomService.room.subscribe(room => {
-      this.members = room.members;
-      this.payment.included = this.members;
+    this.api.getMembers().then(members => {
+      this.members = members;
+      this.payment.included = this.members.map(m => m.id);
     });
   }
 
@@ -43,21 +40,17 @@ export class IncludedComponent extends UploadItemComponent implements OnInit, On
 
   everybodyIncludedToggle() {
     this.everybodyIncluded = !this.everybodyIncluded;
-    this.payment.included = this.everybodyIncluded ? this.members : this.selectedMembers;
+    this.payment.included = (this.everybodyIncluded ? this.members : this.selectedMembers).map(m => m.id);
     this.checkValidation();
   }
 
-  selectMember(member: Member) {
+  selectMember(member: {id: string, name: string}) {
     if (this.selectedMembers.includes(member))
       this.selectedMembers.splice(this.selectedMembers.indexOf(member), 1);
     else
       this.selectedMembers.push(member);
-    this.payment.included = this.selectedMembers;
+    this.payment.included = this.selectedMembers.map(m => m.id);
     this.paymentChanged.next(this.payment);
     this.checkValidation();
   }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
 }

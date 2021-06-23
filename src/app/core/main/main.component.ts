@@ -1,10 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Member } from 'src/app/models/debter.model';
-import { RoomService } from 'src/app/services/room.service';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { RoomSummary } from 'src/app/models/debter-interfaces.model';
+import { CookieManager } from 'src/app/services/cookie-manager.service';
 
 @Component({
   selector: 'app-main',
@@ -25,15 +22,17 @@ export class MainComponent implements OnInit {
   ];
 
   tableLabels = ['Name', 'Paid', 'Debt'];
-  roomSummary: Observable<RoomSummary>;
+  roomSummary: RoomSummary = { roomKey: '', name: '', sum: 0.0, currency: '', memberSummary: [] };
   loading: boolean = true;
   shown: boolean = false;
 
-  constructor(public api: ApiService) {
+  constructor(public api: ApiService, private cookie: CookieManager) {
   }
 
-  ngOnInit() {
-    this.roomSummary = this.api.getRoomSummary();
+  async ngOnInit() {
+    this.roomSummary = await this.api.getRoomSummary();
+    this.cookie.addRoom(this.roomSummary.roomKey, this.roomSummary.name);
+    this.loading = false;
   }
 
   copy() {
