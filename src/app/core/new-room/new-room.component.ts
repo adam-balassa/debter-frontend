@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-new-room',
@@ -13,7 +14,7 @@ export class NewRoomComponent implements OnInit {
   members: string[] = [''];
 
   constructor(
-    private room: RoomService,
+    private api: ApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute ) { }
 
@@ -33,7 +34,6 @@ export class NewRoomComponent implements OnInit {
   }
 
   save() {
-    this.room.addMembersToRoom(this.members)
-    .then(() => { this.router.navigate(['../'], {relativeTo: this.activatedRoute}); });
+    this.api.addMembers(this.members).then(() => { this.router.navigate(['../'], {relativeTo: this.activatedRoute}); });
   }
 }

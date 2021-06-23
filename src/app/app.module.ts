@@ -5,7 +5,7 @@ import localeHungary from '@angular/common/locales/hu';
 import localeUS from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-import { registerLocaleData} from '@angular/common';
+import { CommonModule, registerLocaleData} from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -83,6 +83,7 @@ registerLocaleData (localeUS, 'en');
     DeleteMemberComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

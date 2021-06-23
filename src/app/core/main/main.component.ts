@@ -2,14 +2,16 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/co
 import { ActivatedRoute } from '@angular/router';
 import { Member } from 'src/app/models/debter.model';
 import { RoomService } from 'src/app/services/room.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
+import { RoomSummary } from 'src/app/models/debter-interfaces.model';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class MainComponent implements OnInit {
   @ViewChild('projectIdInput') projectIdInput: ElementRef;
   tableTemplate = [
     {align: 'left', ratio: 3},
@@ -23,21 +25,15 @@ export class MainComponent implements OnInit, OnDestroy {
   ];
 
   tableLabels = ['Name', 'Paid', 'Debt'];
-  members: Member[] = [];
-  sum: number = 0;
+  roomSummary: Observable<RoomSummary>;
   loading: boolean = true;
   shown: boolean = false;
-  subscription: Subscription;
 
-  constructor(public project: RoomService) {
+  constructor(public api: ApiService) {
   }
 
   ngOnInit() {
-    this.project.loadRoomDetails().then(result => { this.loading = false; });
-    this.subscription = this.project.room.subscribe(room => {
-      this.members = room.members;
-      this.sum = this.members.reduce((sum, next) => sum + next.sum, 0);
-    });
+    this.roomSummary = this.api.getRoomSummary();
   }
 
   copy() {
@@ -47,11 +43,4 @@ export class MainComponent implements OnInit, OnDestroy {
     this.shown = true;
     this.projectIdInput.nativeElement.blur();
   }
-
-
-  ngOnDestroy(): void {
-    if (this.subscription)
-      this.subscription.unsubscribe();
-  }
-
 }

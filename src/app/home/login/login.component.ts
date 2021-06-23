@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CookieManager } from './../../services/cookie-manager.service';
 import { RoomService } from 'src/app/services/room.service';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   @Output() submitted: EventEmitter;
   popup: boolean = false;
-  constructor(private cookieManager: CookieManager, private roomService: RoomService, private router: Router) { }
+  constructor(private cookieManager: CookieManager, private api: ApiService, private router: Router) { }
   form: FormGroup;
   message = '';
   rooms: {roomKey: string, name: string}[] = [];
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) return;
     this.loading = true;
     const roomKey = this.form.value.roomIdInput;
-    this.roomService.joinRoom(roomKey).then(() => {
+    this.api.roomKey = roomKey;
+    this.api.getRoomSummary().toPromise().then(() => {
       this.router.navigateByUrl(`/room/${roomKey}`);
     })
     .catch(error => {
