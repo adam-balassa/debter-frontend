@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Room } from 'src/app/models/debter.model';
 import { ApiService } from 'src/app/services/api.service';
 import { AddUserService } from '../../services/add-user.service';
 

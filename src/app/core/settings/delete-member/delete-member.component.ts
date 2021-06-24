@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription, of } from 'rxjs';
 import { AddUserService } from 'src/app/services/add-user.service';
-import { Payment, Member, Room } from 'src/app/models/debter.model';
 import { ApiService } from 'src/app/services/api.service';
 import { GetPaymentResponse } from 'src/app/models/debter-interfaces.model';
 
