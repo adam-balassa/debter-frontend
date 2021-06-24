@@ -63,3 +63,8 @@ export interface RoomSummary {
     debt: number;
   }[];
 }
+
+export interface AddMemberRequest {
+  name: string,
+  includedPaymentIds: string[];
+}

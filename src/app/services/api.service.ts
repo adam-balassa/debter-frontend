@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import {
+  AddMemberRequest,
   AddPaymentRequest,
   CreateRoomResponse,
   GetDebtsResponse,
@@ -44,6 +45,22 @@ export class ApiService {
   public getRoomSummary(roomKey: string = null): Promise<RoomSummary> {
     roomKey = roomKey || this.roomKey;
     return this.http.get<RoomSummary>(`${API}/room/${roomKey}/summary`).toPromise();
+  }
+
+  public getRoomSettings(): Promise<{rounding: number, currency: string}> {
+    return this.http.get<{rounding: number, currency: string}>(`${API}/room/${this.roomKey}/settings`).toPromise();
+  }
+
+  public updateRoomSettings(settings: {rounding: number, currency: string}): Promise<void> {
+    return this.http.put(`${API}/room/${this.roomKey}/settings`, settings).toPromise().then();
+  }
+
+  public addMemberToExistingRoom(newMember: AddMemberRequest): Promise<void> {
+    return this.http.put(`${API}/room/${this.roomKey}/members`, newMember).toPromise().then();
+  }
+
+  public deleteMember(memberId: string): Promise<void> {
+    return this.http.delete(`${API}/room/${this.roomKey}/members/${memberId}`).toPromise().then();
   }
 
   public getMembers(): Promise<{ id: string; name: string }[]> {

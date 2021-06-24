@@ -1,19 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AddUserService } from '../../../services/add-user.service';
-import { Payment } from 'src/app/models/debter.model';
-import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { GetPaymentResponse } from 'src/app/models/debter-interfaces.model';
 
 @Component({
   selector: 'app-add-new-user',
   templateUrl: './add-new-user.component.html',
   styleUrls: ['./add-new-user.component.css']
 })
-export class AddNewUserComponent implements OnInit, OnDestroy {
+export class AddNewUserComponent implements OnInit {
 
-  payments: Payment[];
-  selectedPayments: Payment[] = [];
-  subscription: Subscription;
+  payments: GetPaymentResponse[] = [];
+  selectedPayments: string[] = [];
   loading = false;
   readonly template = [
     { align: 'left', ratio: 1 },
@@ -23,39 +22,42 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
     { align: 'left', ratio: 1 }
   ];
   constructor(
+    private api: ApiService,
     public addUserService: AddUserService,
     private router: Router,
     private link: ActivatedRoute) { }
 
-  ngOnInit() {
-    // this.payments = this.roomSerice.room.value.payments;
-    // this.subscription = this.roomSerice.room.subscribe(room => this.payments = room.payments);
+  async ngOnInit() {
+    this.loading = true;
+    this.payments = (await this.api.getPayments()).activePayments;
+    this.loading = false;
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  select(payment: Payment, select: boolean) {
+  select(paymentId: string, select: boolean) {
     if (select) {
-      if (!this.selectedPayments.includes(payment)) this.selectedPayments.push(payment);
+      if (!this.selectedPayments.includes(paymentId)) this.selectedPayments.push(paymentId);
     } else {
-      if (this.selectedPayments.includes(payment))
-        this.selectedPayments.splice(this.selectedPayments.findIndex(p => p === payment), 1);
+      if (this.selectedPayments.includes(paymentId))
+        this.selectedPayments.splice(this.selectedPayments.findIndex(p => p === paymentId), 1);
     }
+    console.log(this.selectedPayments);
   }
 
   selectAll() {
-    this.selectedPayments = [...this.payments];
+    this.selectedPayments = this.payments.map(p => p.id);
+    console.log(this.selectedPayments);
+
   }
 
   deselectAll() {
     this.selectedPayments = [];
+    console.log(this.selectedPayments);
   }
 
   save() {
     this.loading = true;
-    // this.roomSerice.addNewMember(this.addUserService.name, this.selectedPayments)
-    // .then(() => { this.loading = false; this.router.navigate(['../../'], {relativeTo: this.link}); });
+    this.api.addMemberToExistingRoom({ name: this.addUserService.name, includedPaymentIds: this.selectedPayments });
+    this.loading = false;
+    this.router.navigate(['../../'], {relativeTo: this.link});
   }
 }

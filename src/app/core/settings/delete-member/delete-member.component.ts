@@ -2,16 +2,17 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, of } from 'rxjs';
 import { AddUserService } from 'src/app/services/add-user.service';
 import { Payment, Member, Room } from 'src/app/models/debter.model';
+import { ApiService } from 'src/app/services/api.service';
+import { GetPaymentResponse } from 'src/app/models/debter-interfaces.model';
 
 @Component({
   selector: 'app-delete-member',
   templateUrl: './delete-member.component.html',
   styleUrls: ['./delete-member.component.css']
 })
-export class DeleteMemberComponent implements OnInit, OnDestroy {
-  subscription: Subscription;
-  members: Member[];
-  payments: Payment[];
+export class DeleteMemberComponent implements OnInit {
+  members: {id: string, name: string}[] = [];
+  payments: GetPaymentResponse[] = [];
   loading = false;
   readonly template = [
     { align: 'left', ratio: 1 },
@@ -21,25 +22,26 @@ export class DeleteMemberComponent implements OnInit, OnDestroy {
     { align: 'left', ratio: 1 }
   ];
   constructor(
-    public addUserService: AddUserService) { }
+    private api: ApiService,
+    public addUserService: AddUserService
+  ) { }
 
   ngOnInit() {
-    // this.subscription = this.roomSerice.room.subscribe(room => { this.init(room); });
+    this.init();
   }
 
-  init(room: Room) {
-    this.payments = room.payments;
-    this.members = room.members.filter(
-      member => this.payments.every(payment => payment.member !== member && payment.excluded.includes(member)));
+  async init() {
+    this.payments = (await this.api.getPayments()).activePayments;
+    this.members = (await this.api.getMembers()).filter(m => this.payments.every(p =>
+      p.memberName != m.name &&
+      !p.includedMembers.find(i => i.memberName == m.name).included));
   }
 
 
-  removeMember(member: Member) {
+  removeMember({id}) {
     this.loading = true;
-    // this.roomSerice.deleteMember(member).then(() => { this.loading = false; });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.api.deleteMember(id);
+    this.loading = false;
+    this.init();
   }
 }

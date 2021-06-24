@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Room } from 'src/app/models/debter.model';
+import { ApiService } from 'src/app/services/api.service';
 import { AddUserService } from '../../services/add-user.service';
 
 @Component({
@@ -15,25 +16,28 @@ export class SettingsComponent implements OnInit {
   initialValueIndex: number;
   initialCurrencyIndex: number;
   loading = false;
+  settings: {rounding: number, currency: string}
 
-  constructor(private addUserService: AddUserService, private router: Router, private link: ActivatedRoute) { }
+  constructor(private api: ApiService, private addUserService: AddUserService, private router: Router, private link: ActivatedRoute) { }
 
-  ngOnInit() {
-    // const room: Room = this.room.room.value;
-    // this.initialValueIndex = this.values.indexOf(room.rounding);
-    // this.initialCurrencyIndex = this.currencies.indexOf(room.mainCurrency);
+  async ngOnInit() {
+    this.settings = await this.api.getRoomSettings();
+    this.initialValueIndex = this.values.indexOf(this.settings.rounding);
+    this.initialCurrencyIndex = this.currencies.indexOf(this.settings.currency);
   }
 
-  setCurrency(newCurrency: string) {
+  async setCurrency(newCurrency: string) {
     this.loading = true;
-    // this.room.setMainCurrency(newCurrency)
-    // .then(() => { this.loading = false; });
+    this.settings.currency = newCurrency;
+    await this.api.updateRoomSettings(this.settings);
+    this.loading = false;
   }
 
-  setRounding(rounding: number) {
+  async setRounding(rounding: number) {
     this.loading = true;
-    // this.room.setRounding(rounding)
-    // .then(() => { this.loading = false; });
+    this.settings.rounding = rounding;
+    await this.api.updateRoomSettings(this.settings);
+    this.loading = false;
   }
 
   addNewMember(name: string) {

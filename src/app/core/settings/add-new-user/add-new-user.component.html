@@ -23,8 +23,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let payment of payments">
-        <td><app-checkbox [checked]="selectedPayments.includes(payment)" (checkedChange)="select(payment, $event)"></app-checkbox></td>
-        <td>{{ payment.member.name }}</td>
+        <td><app-checkbox [checked]="selectedPayments.includes(payment.id)" (checkedChange)="select(payment.id, $event)"></app-checkbox></td>
+        <td>{{ payment.memberName }}</td>
         <td>{{ payment | valuePipe }}</td>
         <td>{{ payment.date | myDate }}</td>
         <td><span>{{ payment.note }}</span></td>
