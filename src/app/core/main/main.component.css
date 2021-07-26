@@ -10,6 +10,7 @@
 }
 .main-image{
     height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,7 +99,7 @@ app-table{
     transition: all ease-in-out .12s;
 }
 
-.copy:hover {	
+.copy:hover {
     background-color: #f4f4f4;
 	color: var(--blue);
 }
