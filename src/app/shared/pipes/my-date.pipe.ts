@@ -8,7 +8,7 @@ export class MyDatePipe implements PipeTransform {
   datePipe: DatePipe;
 
   constructor() {
-    this.datePipe = new DatePipe('hu');
+    this.datePipe = new DatePipe('en');
   }
 
   transform(date: Date, args?: any): any {
@@ -38,11 +38,11 @@ export class MyDatePipe implements PipeTransform {
   }
 
   today(date: Date): string {
-    return this.datePipe.transform(date, 'H:mm:ss');
+    return this.datePipe.transform(date, 'H:mm');
   }
 
   old(date: Date): string {
-    return this.datePipe.transform(date, 'y MMM d.');
+    return this.datePipe.transform(date, 'y MMM d');
   }
 
 }

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import localeHungary from '@angular/common/locales/hu';
 import localeUS from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
@@ -44,7 +43,6 @@ import { NewRoomComponent } from './core/new-room/new-room.component';
 import { AddNewUserComponent } from './core/settings/add-new-user/add-new-user.component';
 import { DeleteMemberComponent } from './core/settings/delete-member/delete-member.component';
 import { QuizletModule } from './quizlet/quizlet.module';
-registerLocaleData (localeHungary, 'hu');
 registerLocaleData (localeUS, 'en');
 
 @NgModule({
@@ -93,7 +91,7 @@ registerLocaleData (localeUS, 'en');
     BrowserAnimationsModule,
     QuizletModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'hu' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'en' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

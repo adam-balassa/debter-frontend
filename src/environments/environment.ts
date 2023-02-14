@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'http://localhost:8080'
+  API: 'https://cijl2ssmxb.execute-api.eu-central-1.amazonaws.com'
 };
 
 /*

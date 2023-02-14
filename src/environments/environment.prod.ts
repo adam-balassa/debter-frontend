@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API: 'https://debter-server.herokuapp.com'
+  API: 'https://cijl2ssmxb.execute-api.eu-central-1.amazonaws.com'
 };
