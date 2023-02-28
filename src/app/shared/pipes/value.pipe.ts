@@ -11,10 +11,10 @@ interface Value {
 export class ValuePipe implements PipeTransform {
 
   transform(value: Value): string {
-    return this.addCurrency(this.splitNumber(value.value), value.currency);
+    return this.addCurrency(this.splitNumber(value.value, value.currency), value.currency);
   }
 
-  splitNumber(n: number) {
+  splitNumber(n: number, currency: string) {
     const seperatedDigits: string[] = [];
     const negative = n < 0;
     const hundredth = Math.round(n * 100 - Math.floor(n) * 100);
@@ -34,7 +34,7 @@ export class ValuePipe implements PipeTransform {
     }
 
     seperatedDigits[0] = (negative ? '-' : '') + seperatedDigits[0];
-    return seperatedDigits.join(' ') + ((hundredth > 0) ? ('.' + hundredth) : '');
+    return seperatedDigits.join(' ') + ((hundredth > 0 && currency !== 'HUF') ? ('.' + hundredth) : '');
 
   }
 

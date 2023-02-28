@@ -1,9 +1,14 @@
+export interface Split {
+  memberId: string;
+  units: number;
+}
+
 export interface AddPaymentRequest {
   value: number;
   currency: string;
   note: string;
   memberId: string;
-  included: string[];
+  split: Split[];
 }
 
 export interface CreateRoomResponse {
@@ -46,9 +51,9 @@ export interface GetPaymentResponse {
   currency: string;
   note: string;
   date: Date;
-  includedMembers: {
+  split: {
     memberName: string;
-    included: boolean;
+    share: number;
   }[];
 }
 

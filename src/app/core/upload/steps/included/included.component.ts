@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UploadItemComponent } from '../../upload-item/upload-item.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ApiService } from 'src/app/services/api.service';
@@ -30,7 +30,7 @@ export class IncludedComponent extends UploadItemComponent implements OnInit {
   ngOnInit() {
     this.api.getMembers().then(members => {
       this.members = members;
-      this.payment.included = this.members.map(m => m.id);
+      this.payment.split = this.members.map(m => ({ memberId: m.id, units: 1 }));
     });
   }
 
@@ -40,7 +40,7 @@ export class IncludedComponent extends UploadItemComponent implements OnInit {
 
   everybodyIncludedToggle() {
     this.everybodyIncluded = !this.everybodyIncluded;
-    this.payment.included = (this.everybodyIncluded ? this.members : this.selectedMembers).map(m => m.id);
+    this.payment.split = (this.everybodyIncluded ? this.members : this.selectedMembers).map(m => ({ memberId: m.id, units: 1 }));
     this.checkValidation();
   }
 
@@ -49,7 +49,7 @@ export class IncludedComponent extends UploadItemComponent implements OnInit {
       this.selectedMembers.splice(this.selectedMembers.indexOf(member), 1);
     else
       this.selectedMembers.push(member);
-    this.payment.included = this.selectedMembers.map(m => m.id);
+    this.payment.split = this.selectedMembers.map(m => ({ memberId: m.id, units: 1 }));
     this.paymentChanged.next(this.payment);
     this.checkValidation();
   }

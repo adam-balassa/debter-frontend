@@ -39,7 +39,7 @@ export class UploadComponent implements OnInit {
       memberId: '',
       note: '',
       currency: 'HUF',
-      included: []
+      split: []
     };
   }
 

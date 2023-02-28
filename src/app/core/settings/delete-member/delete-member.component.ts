@@ -32,7 +32,7 @@ export class DeleteMemberComponent implements OnInit {
     this.payments = (await this.api.getPayments()).activePayments;
     this.members = (await this.api.getMembers()).filter(m => this.payments.every(p =>
       p.memberName != m.name &&
-      !p.includedMembers.find(i => i.memberName == m.name).included));
+      !p.split.find(i => i.memberName == m.name)));
   }
 
 

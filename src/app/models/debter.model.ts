@@ -23,7 +23,7 @@ export interface Payment {
   date: Date;
   active: boolean;
   member: Member;
-  excluded: Member[];
+  split: { memberName: string; share: number };
 }
 
 export interface Room {
