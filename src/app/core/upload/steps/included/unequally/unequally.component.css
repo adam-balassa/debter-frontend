@@ -1,0 +1,16 @@
+.member-list {
+  padding: 1rem;
+}
+
+.member-line {
+  display: flex;
+  margin-bottom: .5rem;
+}
+
+.member-input {
+  flex: 1
+}
+
+.member {
+  flex: 1;
+}

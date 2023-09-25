@@ -1,0 +1,14 @@
+<div class="tab-group-container">
+  <div class="tab-group">
+    <app-member [hoverable]="true" [selected]="isEqualSelected" (click)="isEqualSelected = true">
+      Equally
+    </app-member>
+    <app-member [hoverable]="true" [selected]="!isEqualSelected" (click)="isEqualSelected = false">
+      Unequally
+    </app-member>
+  </div>
+  <div class="tab-content">
+    <ng-content *ngIf="isEqualSelected" select="[equally]"></ng-content>
+    <ng-content *ngIf="!isEqualSelected" select="[unequally]"></ng-content>
+  </div>
+</div>

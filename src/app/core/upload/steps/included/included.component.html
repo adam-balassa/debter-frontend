@@ -1,20 +1,9 @@
 <div class="title">
-  Select who are included
+  Split the payment
 </div>
 <div class="users">
-  <app-member
-    [hoverable]="true" 
-    [selected]="everybodyIncluded" 
-    (click)="everybodyIncludedToggle()">
-    Everybody
-  </app-member>
-  <div class="other-users" *ngIf="!everybodyIncluded" @collapse>
-    <app-member
-      *ngFor="let member of members;"
-      [hoverable]="true" 
-      [selected]="selectedMembers.includes(member)" 
-      (click)="selectMember(member)">
-      {{ member.name }}
-    </app-member>
-  </div>
+  <app-equal-unequal>
+    <app-equally equally [members]="members" [(split)]="payment.split" (splitChange)="checkValidation()"></app-equally>
+    <app-unequally unequally [members]="members" [(split)]="payment.split" (splitChange)="checkValidation()"></app-unequally>
+  </app-equal-unequal>
 </div>

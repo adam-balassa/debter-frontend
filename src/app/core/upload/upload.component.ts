@@ -20,7 +20,7 @@ export interface UploadingPayment {
 export class UploadComponent implements OnInit {
 
   slides = ['Who paid?', 'How much?', 'Add note', 'Who\'s included?'];
-  activeSlide = 0;
+  activeSlide = 3;
   mayContinue: boolean = false;
   payment: AddPaymentRequest;
   loading: boolean = false;
