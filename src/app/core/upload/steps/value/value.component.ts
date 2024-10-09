@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UploadItemComponent } from '../../upload-item/upload-item.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {ApiService} from '../../../../services/api.service';
 
 @Component({
   selector: 'app-value',
@@ -19,7 +20,7 @@ export class ValueComponent extends UploadItemComponent implements OnInit {
   valueForm: FormGroup;
   readonly currencies = ['HUF', 'EUR', 'USD'];
   initialCurrency: number;
-  constructor() {
+  constructor(private api: ApiService) {
     super();
     this.valueForm = new FormGroup({
       'value': new FormControl('', [
@@ -38,6 +39,11 @@ export class ValueComponent extends UploadItemComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
     this.initialCurrency = this.currencies.indexOf(this.payment.currency);
+    this.api.getRoomSettings().then(({ currency }) => {
+      this.payment.currency = currency;
+      this.initialCurrency = this.currencies.indexOf(currency);
+      this.paymentChanged.next(this.payment);
+    })
   }
 
   isNumber (control: FormControl): {[key: string]: boolean} {
