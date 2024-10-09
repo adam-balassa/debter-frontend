@@ -43,6 +43,8 @@ import { NewRoomComponent } from './core/new-room/new-room.component';
 import { AddNewUserComponent } from './core/settings/add-new-user/add-new-user.component';
 import { DeleteMemberComponent } from './core/settings/delete-member/delete-member.component';
 import { QuizletModule } from './quizlet/quizlet.module';
+import { EquallyComponent } from './core/upload/steps/included/equally/equally.component';
+import { UnequallyComponent } from './core/upload/steps/included/unequally/unequally.component';
 registerLocaleData (localeUS, 'en');
 
 @NgModule({
@@ -78,7 +80,9 @@ registerLocaleData (localeUS, 'en');
     SettingsComponent,
     NewRoomComponent,
     AddNewUserComponent,
-    DeleteMemberComponent
+    DeleteMemberComponent,
+    EquallyComponent,
+    UnequallyComponent
   ],
   imports: [
     CommonModule,

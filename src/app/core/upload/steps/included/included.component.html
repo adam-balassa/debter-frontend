@@ -1,20 +1,32 @@
 <div class="title">
-  Select who are included
+  Split the payment
 </div>
-<div class="users">
-  <app-member
-    [hoverable]="true" 
-    [selected]="everybodyIncluded" 
-    (click)="everybodyIncludedToggle()">
-    Everybody
-  </app-member>
-  <div class="other-users" *ngIf="!everybodyIncluded" @collapse>
-    <app-member
-      *ngFor="let member of members;"
-      [hoverable]="true" 
-      [selected]="selectedMembers.includes(member)" 
-      (click)="selectMember(member)">
-      {{ member.name }}
+<div class="tab-group-container">
+  <div class="tab-group">
+    <app-member [hoverable]="true" [selected]="isEqualSelected" (click)="isEqualSelected = true">
+      Equally
     </app-member>
+    <app-member [hoverable]="true" [selected]="!isEqualSelected" (click)="isEqualSelected = false">
+      Unequally
+    </app-member>
+  </div>
+  <div class="tab-content">
+    <app-equally
+      *ngIf="isEqualSelected"
+      [members]="members"
+      [(split)]="payment.split"
+      (splitChange)="onSplitChange($event)"
+    ></app-equally>
+
+    <app-unequally
+      *ngIf="!isEqualSelected && members?.length > 1"
+      [currency]="payment.currency"
+      [members]="members"
+      [total]="payment.value"
+      [(split)]="payment.split"
+      [(isValid)]="isValid"
+      (isValidChange)="valid.emit($event)"
+      (splitChange)="onSplitChange($event)"
+    ></app-unequally>
   </div>
 </div>

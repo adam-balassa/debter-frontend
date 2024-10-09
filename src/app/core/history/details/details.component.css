@@ -39,6 +39,26 @@
 
 .details-users{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     padding-top: 0.5rem;
+}
+
+.share {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 2rem;
+}
+
+.share > .member {
+    display: flex;
+    gap: 10px;
+}
+
+.share > .value {
+    color: var(--dark-pink);
+}
+
+.share > .value.payer {
+    color: var(--dark-blue);
 }

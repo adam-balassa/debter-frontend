@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Member } from 'src/app/models/debter.model';
 import { ApiService } from 'src/app/services/api.service';
@@ -35,11 +35,11 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     this.payment = {
-      value: 0,
+      value: 2000,
       memberId: '',
       note: '',
       currency: 'HUF',
-      included: []
+      split: []
     };
   }
 

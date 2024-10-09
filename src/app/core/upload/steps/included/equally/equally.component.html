@@ -1,0 +1,11 @@
+<div class="member-list">
+  <div class="member-switch"
+    *ngFor="let member of members"
+    [ngClass]="{ selected: includedMembers.includes(member.id) }"
+    (click)="toggle(member)"
+  >
+    <i class="material-icons exclude">close</i>
+    <span>{{ member.name }}</span>
+    <i class="material-icons include">check</i>
+  </div>
+</div>

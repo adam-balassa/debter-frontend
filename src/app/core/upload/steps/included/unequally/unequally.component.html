@@ -1,0 +1,29 @@
+<div class="d-flex flex-column align-items-center">
+  <div class="unit-selector mt-3">
+    <div class="unit-option" [ngClass]="{ selected: unit === 'percentage' }" (click)="onUnitChange('percentage')">%</div>
+    <div class="unit-option" [ngClass]="{ selected: unit === 'exact' }" (click)="onUnitChange('exact')">
+      {{ displayCurrency() }}
+    </div>
+    <div class="unit-option" [ngClass]="{ selected: unit === 'ratio' }" (click)="onUnitChange('ratio')">÷</div>
+  </div>
+  <div class="member-list">
+    <div class="member-pill" *ngFor="let member of memberSplit">
+      <div class="member-name">{{ member.member.name }}</div>
+      <div class="split-input position-relative">
+        <input
+          type="number"
+          name="unit"
+          class=" w-100 position-absolute"
+          [(ngModel)]="member.split.units"
+          (change)="onSplitChange()"
+        >
+        <span class="input-size">{{ member.split.units }}</span>
+      </div>
+      <div class="member-unit">
+        {{ unit === 'percentage' ? '%' : unit === 'exact' ? displayCurrency() : 'unit' }}
+      </div>
+    </div>
+  </div>
+  <span *ngIf="validationIssue" class="validation-issue">{{ validationIssue }}</span>
+</div>
+

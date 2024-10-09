@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UploadItemComponent } from '../../upload-item/upload-item.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ApiService } from 'src/app/services/api.service';
+import {Split} from '../../../../models/debter-interfaces.model';
 
 @Component({
   selector: 'app-included',
@@ -19,9 +20,9 @@ import { ApiService } from 'src/app/services/api.service';
   ]
 })
 export class IncludedComponent extends UploadItemComponent implements OnInit {
-  everybodyIncluded: boolean = true;
-  selectedMembers: {id: string, name: string}[] = [];
   members: {id: string, name: string}[];
+  isEqualSelected: boolean = true;
+  isValid: boolean = true;
 
   constructor(private api: ApiService) {
     super();
@@ -30,27 +31,24 @@ export class IncludedComponent extends UploadItemComponent implements OnInit {
   ngOnInit() {
     this.api.getMembers().then(members => {
       this.members = members;
-      this.payment.included = this.members.map(m => m.id);
+      this.payment.split = this.members.map(m => ({ memberId: m.id, units: 1 }));
+      this.checkValidation();
     });
   }
 
+  onTabSelectionChange() {
+    this.isEqualSelected = !this.isEqualSelected;
+    this.onSplitChange(this.payment.split);
+  }
+
+  onSplitChange(split: Split[]) {
+    const nextSplit = split.filter(s => s.units > 0);
+    this.isValid = nextSplit.length > 0;
+    this.valid.next(this.isValid);
+    this.paymentChanged.emit({ ...this.payment, split: nextSplit });
+  }
+
   checkValidation() {
-    this.valid.next(this.everybodyIncluded || this.selectedMembers.length > 0);
-  }
-
-  everybodyIncludedToggle() {
-    this.everybodyIncluded = !this.everybodyIncluded;
-    this.payment.included = (this.everybodyIncluded ? this.members : this.selectedMembers).map(m => m.id);
-    this.checkValidation();
-  }
-
-  selectMember(member: {id: string, name: string}) {
-    if (this.selectedMembers.includes(member))
-      this.selectedMembers.splice(this.selectedMembers.indexOf(member), 1);
-    else
-      this.selectedMembers.push(member);
-    this.payment.included = this.selectedMembers.map(m => m.id);
-    this.paymentChanged.next(this.payment);
-    this.checkValidation();
+    return this.isValid;
   }
 }

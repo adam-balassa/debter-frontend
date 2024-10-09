@@ -15,7 +15,13 @@
 </div>
 <div class="separator"></div>
 <div class="details-users">
-    <app-member *ngFor="let member of payment.includedMembers" [selected]="member.included">
-        <span>{{ member.memberName }}</span>
-    </app-member>
+    <div class="share col-md-6 col-8" *ngFor="let split of payment.split">
+        <div class="member">
+            <span>{{ split.memberName }}</span>
+            <span>{{ payment.memberName === split.memberName ? 'shares' : 'owes' }}</span>
+        </div>
+        <span class="value" [ngClass]="{ payer: payment.memberName === split.memberName }">
+            {{ { value: split.share, currency: payment.currency } | valuePipe }}
+        </span>
+    </div>
 </div>

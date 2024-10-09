@@ -65,7 +65,7 @@ main{
 
 .slides{
     position: relative;
-    height: 45vh;
+    min-height: 45vh;
     width: 100%;
 }
 .footer{

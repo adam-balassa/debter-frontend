@@ -36,7 +36,7 @@ export class DebtsComponent implements OnInit {
     this.loading = true;
     this.api.uploadPayment({
       memberId: debtMember.id,
-      included: [debt.payeeId],
+      split: [{ memberId: debt.payeeId, units: 1 }],
       value: debt.value,
       currency: this.debts.currency,
       note: `${debt.value} ${this.debts.currency} debt arrangement between ${debtMember.name} and ${debt.payeeName}`
