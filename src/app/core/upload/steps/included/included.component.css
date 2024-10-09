@@ -1,25 +1,26 @@
 :host{
     display: flex;
-    height: 100%;
     padding: 2rem 0;
     flex-direction: column;
     overflow-y: auto;
 }
 
-.users{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    transition: all ease-in-out .2s;
+.tab-group-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.other-users{
-    display: flex;
-    padding: 0 2rem;
-    flex-wrap: wrap;
-    justify-content: center; 
+.tab-group {
+  padding: 0 0 1rem 1rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--white);
+  justify-content: center;
 }
+
+
 
 .title{
     font-size: 1.5rem;

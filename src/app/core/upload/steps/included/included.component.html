@@ -1,9 +1,32 @@
 <div class="title">
   Split the payment
 </div>
-<div class="users">
-  <app-equal-unequal>
-    <app-equally equally [members]="members" [(split)]="payment.split" (splitChange)="checkValidation()"></app-equally>
-    <app-unequally unequally [members]="members" [(split)]="payment.split" (splitChange)="checkValidation()"></app-unequally>
-  </app-equal-unequal>
+<div class="tab-group-container">
+  <div class="tab-group">
+    <app-member [hoverable]="true" [selected]="isEqualSelected" (click)="isEqualSelected = true">
+      Equally
+    </app-member>
+    <app-member [hoverable]="true" [selected]="!isEqualSelected" (click)="isEqualSelected = false">
+      Unequally
+    </app-member>
+  </div>
+  <div class="tab-content">
+    <app-equally
+      *ngIf="isEqualSelected"
+      [members]="members"
+      [(split)]="payment.split"
+      (splitChange)="onSplitChange($event)"
+    ></app-equally>
+
+    <app-unequally
+      *ngIf="!isEqualSelected && members?.length > 1"
+      [currency]="payment.currency"
+      [members]="members"
+      [total]="payment.value"
+      [(split)]="payment.split"
+      [(isValid)]="isValid"
+      (isValidChange)="valid.emit($event)"
+      (splitChange)="onSplitChange($event)"
+    ></app-unequally>
+  </div>
 </div>

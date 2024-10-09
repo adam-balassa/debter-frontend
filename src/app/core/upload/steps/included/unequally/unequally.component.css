@@ -1,16 +1,80 @@
+.unit-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-radius: 99px;
+  border: 1px solid var(--dark-blue);
+  overflow: hidden;
+}
+
+.unit-option {
+  padding: 0.6rem 1.3rem;
+  color: var(--dark-blue);
+  cursor: pointer;
+}
+
+.unit-option.selected {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+
+.unit-option:hover:not(.selected) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 .member-list {
   padding: 1rem;
-}
-
-.member-line {
   display: flex;
-  margin-bottom: .5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.member-input {
-  flex: 1
+.member-pill {
+  display: flex;
+  align-items: center;
+  border-radius: 99px;
+  margin: 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--white);
 }
 
-.member {
-  flex: 1;
+.member-name {
+  background-color: var(--white);
+  padding: 0.5rem 1rem;
+}
+
+.split-input {
+  height: 2.5rem;
+}
+
+.split-input input {
+  outline: 0;
+  border: 0;
+  left: 0;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.split-input .input-size {
+  visibility: hidden;
+  white-space: pre-wrap;
+  padding: 0 1rem;
+}
+
+.split-input input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+.member-unit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--white);
+}
+
+.validation-issue {
+  color: var(--red);
+  white-space: pre-wrap;
 }

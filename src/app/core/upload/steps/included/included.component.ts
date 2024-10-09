@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UploadItemComponent } from '../../upload-item/upload-item.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ApiService } from 'src/app/services/api.service';
-import { Split } from 'src/app/models/debter-interfaces.model';
+import {Split} from '../../../../models/debter-interfaces.model';
 
 @Component({
   selector: 'app-included',
@@ -21,6 +21,8 @@ import { Split } from 'src/app/models/debter-interfaces.model';
 })
 export class IncludedComponent extends UploadItemComponent implements OnInit {
   members: {id: string, name: string}[];
+  isEqualSelected: boolean = true;
+  isValid: boolean = true;
 
   constructor(private api: ApiService) {
     super();
@@ -30,12 +32,23 @@ export class IncludedComponent extends UploadItemComponent implements OnInit {
     this.api.getMembers().then(members => {
       this.members = members;
       this.payment.split = this.members.map(m => ({ memberId: m.id, units: 1 }));
-      this.checkValidation()
+      this.checkValidation();
     });
   }
 
+  onTabSelectionChange() {
+    this.isEqualSelected = !this.isEqualSelected;
+    this.onSplitChange(this.payment.split);
+  }
+
+  onSplitChange(split: Split[]) {
+    const nextSplit = split.filter(s => s.units > 0);
+    this.isValid = nextSplit.length > 0;
+    this.valid.next(this.isValid);
+    this.paymentChanged.emit({ ...this.payment, split: nextSplit });
+  }
+
   checkValidation() {
-    console.log("check")
-    this.valid.next(this.payment.split.length > 0);
+    return this.isValid;
   }
 }

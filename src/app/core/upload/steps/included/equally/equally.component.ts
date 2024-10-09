@@ -9,26 +9,35 @@ import { Split } from 'src/app/models/debter-interfaces.model';
 export class EquallyComponent implements OnInit {
 
   @Input() members: {id: string, name: string}[];
-  @Input() split: Split[];
+  @Input() set split (value: Split[]) {
+    this.includedMembers = value.filter(m => m.units > 0).map(m => m.memberId);
+  }
   @Output() splitChange = new EventEmitter<Split[]>();
+
+  includedMembers: string[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.splitChange.emit(
+      this.members.map(m => ({
+        memberId: m.id,
+        units: this.includedMembers.includes(m.id) ? 1 : 0
+      }))
+    );
   }
-
-  memberIncluded (member: { id: string }) {
-    return this.split.find(m => m.memberId === member.id)
-  }
-
 
   toggle({ id }: { id: string }) {
-    const idx = this.split.findIndex(m => m.memberId === id)
-    if(idx === -1) {
-      this.split.push({ memberId: id, units: 1 })
+    if (this.includedMembers.includes(id)) {
+      this.includedMembers = this.includedMembers.filter(m => m !== id);
     } else {
-      this.split.splice(idx, 1);
+      this.includedMembers.push(id);
     }
-    this.splitChange.next(this.split);
+    this.splitChange.next(
+      this.members.map(m => ({
+        memberId: m.id,
+        units: this.includedMembers.includes(m.id) ? 1 : 0
+      }))
+    );
   }
 }
