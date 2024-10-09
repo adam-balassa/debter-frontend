@@ -25,7 +25,7 @@ import { trigger, state, style, transition, animate } from "@angular/animations"
 export class FormAlertComponent implements OnInit {
 
   private displayed: boolean = true;
-  @ViewChild('icon', { static: false }) icon: ElementRef;
+  @ViewChild('icon') icon: ElementRef;
   @Input('message') msg: string;
   iconDisplayed: boolean;
   @Input('alerted') set alerted(alerted: boolean) {

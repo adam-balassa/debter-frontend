@@ -17,7 +17,7 @@ export class HeaderPhoneComponent implements OnInit, OnDestroy {
 
   @Input('items') items: HeaderItem[];
   @ViewChild('check', { static: true }) check;
-  @ViewChild('menu', { static: false }) menu;
+  @ViewChild('menu') menu;
   @ViewChild('nav', { static: true }) nav;
   open: boolean;
   subscription: Subscription;
