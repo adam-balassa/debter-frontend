@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import localeUS from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
@@ -47,55 +47,48 @@ import { EquallyComponent } from './core/upload/steps/included/equally/equally.c
 import { UnequallyComponent } from './core/upload/steps/included/unequally/unequally.component';
 registerLocaleData (localeUS, 'en');
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HomeHeaderComponent,
-    HomeHeaderItemComponent,
-    IndexComponent,
-    AboutComponent,
-    ContactComponent,
-    LoginComponent,
-    CreateComponent,
-    CoreComponent,
-    HeaderComponent,
-    HeaderItemComponent,
-    MainComponent,
-    PaginateComponent,
-    PanelsComponent,
-    HistoryAllComponent,
-    HistoryUndoComponent,
-    HistoryComponent,
-    DetailsComponent,
-    UploadComponent,
-    SlideComponent,
-    IncludedComponent,
-    SelectMembersComponent,
-    NoteComponent,
-    ValueComponent,
-    UploadItemComponent,
-    DebtComponent,
-    DebtsComponent,
-    SettingsComponent,
-    NewRoomComponent,
-    AddNewUserComponent,
-    DeleteMemberComponent,
-    EquallyComponent,
-    UnequallyComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    QuizletModule
-  ],
-  providers: [{ provide: LOCALE_ID, useValue: 'en' }],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        HomeHeaderComponent,
+        HomeHeaderItemComponent,
+        IndexComponent,
+        AboutComponent,
+        ContactComponent,
+        LoginComponent,
+        CreateComponent,
+        CoreComponent,
+        HeaderComponent,
+        HeaderItemComponent,
+        MainComponent,
+        PaginateComponent,
+        PanelsComponent,
+        HistoryAllComponent,
+        HistoryUndoComponent,
+        HistoryComponent,
+        DetailsComponent,
+        UploadComponent,
+        SlideComponent,
+        IncludedComponent,
+        SelectMembersComponent,
+        NoteComponent,
+        ValueComponent,
+        UploadItemComponent,
+        DebtComponent,
+        DebtsComponent,
+        SettingsComponent,
+        NewRoomComponent,
+        AddNewUserComponent,
+        DeleteMemberComponent,
+        EquallyComponent,
+        UnequallyComponent
+    ],
+    bootstrap: [AppComponent], imports: [CommonModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        BrowserAnimationsModule,
+        QuizletModule], providers: [{ provide: LOCALE_ID, useValue: 'en' }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
