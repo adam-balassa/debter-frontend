@@ -20,7 +20,7 @@ import {Split} from '../../../../models/debter-interfaces.model';
   ]
 })
 export class IncludedComponent extends UploadItemComponent implements OnInit {
-  members: {id: string, name: string}[];
+  members: {id: string, name: string}[] = [];
   isEqualSelected: boolean = true;
   isValid: boolean = true;
 

@@ -16,11 +16,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
   ]
 })
-export class SelectComponent implements OnInit {
-
+export class SelectComponent<T extends string | number> implements OnInit {
   collapsed = false;
-  @Input('values') values: string[] = [];
-  @Output('selected') selected: EventEmitter<string> = new EventEmitter<string>();
+  @Input('values') values: T[] = [];
+  @Output('selected') selected: EventEmitter<T> = new EventEmitter<T>();
   @Input() selectedItem = 0
 
   constructor() { }

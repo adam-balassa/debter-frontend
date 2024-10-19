@@ -5,9 +5,9 @@
         <span> {{ content.title }} </span>
       </div>
       <div class="contents">
-        <div class="content-holder" *ngFor="let item of content.content">
-          <div 
-            class="content" 
+        <div class="content-holder" *ngFor="let item of content.content; index as i">
+          <div
+            class="content"
             [ngStyle]="{'border-bottom-width': (i == content.content.length - 1 ? '0' : '1px')}"
             (click)="onNoteTextClick(item.roomKey)"
             >
@@ -15,8 +15,8 @@
           </div>
         </div>
       </div>
-      
+
     </div>
-  </div>  
+  </div>
 </div>
-  
+

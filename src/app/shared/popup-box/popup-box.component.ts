@@ -2,7 +2,7 @@ import { Component, OnInit, Input, HostListener, ElementRef, Output, EventEmitte
 import { trigger, transition, animate, style } from '@angular/animations';
 interface PopUpContent {
   title: string;
-  content: {name: string; value: string}[];
+  content: {name: string; roomKey: string}[];
 }
 
 @Component({

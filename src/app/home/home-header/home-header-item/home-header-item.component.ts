@@ -7,7 +7,7 @@ import { Input } from '@angular/core';
   styleUrls: ['./home-header-item.component.css']
 })
 export class HomeHeaderItemComponent implements OnInit {
-  @Input('url') url: String;
+  @Input('url') url: string;
 
   constructor() { }
 

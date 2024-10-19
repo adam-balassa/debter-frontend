@@ -1,4 +1,4 @@
-import { Directive, EventEmitter, Input, Output, ElementRef, TemplateRef, ViewContainerRef, Renderer, OnInit, Renderer2 } from '@angular/core';
+import { Directive, EventEmitter, Input, Output, ElementRef, TemplateRef, ViewContainerRef, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[clickOut]'
