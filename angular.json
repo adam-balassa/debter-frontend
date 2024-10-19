@@ -142,5 +142,8 @@
       }
     }
   },
-  "defaultProject": "debter-frontend"
+  "defaultProject": "debter-frontend",
+  "cli": {
+    "analytics": "d974f603-4f2e-4b87-9215-04828fb48401"
+  }
 }
