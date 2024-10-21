@@ -37,12 +37,12 @@ export class UnequallyComponent implements OnInit {
 
   get validationIssue() {
     const totalUnits = this.memberSplit.reduce((acc, s) => acc + s.split.units, 0);
-    if (this.unit === 'percentage' && totalUnits !== 100) {
+    if (this.unit === 'percentage' && this.isCloseTo(totalUnits, 100)) {
       return `Total percentage must be 100%
-      Current total is ${totalUnits}%`;
-    } else if (this.unit === 'exact' && totalUnits !== this.total) {
+      Current total is ${this.round(totalUnits)}%`;
+    } else if (this.unit === 'exact' && this.isCloseTo(totalUnits, this.total)) {
       return `Total must be ${this.total} ${this.currency}
-      Current total is ${totalUnits} ${this.currency}`;
+      Current total is ${this.round(totalUnits)} ${this.currency}`;
     }
     return null;
   }
@@ -74,6 +74,10 @@ export class UnequallyComponent implements OnInit {
 
   private round(n: number) {
     return Math.round(n * 10) / 10;
+  }
+
+  private isCloseTo(n: number, m: number) {
+    return Math.abs(n - m) < 0.01;
   }
 
   onSplitChange() {
