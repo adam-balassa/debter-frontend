@@ -71,12 +71,12 @@ export class UnequallyComponent implements OnInit {
     this.onSplitChange();
   }
 
-  private round(n: number) {
-    return Math.round(n * 10) / 10;
+  private round(n: number, precision: number = 2) {
+    return Math.round(n * 10 ** precision) / 10 ** precision;
   }
 
-  private isCloseTo(n: number, m: number) {
-    return Math.abs(n - m) < 0.01;
+  private isCloseTo(n: number, m: number, precision: number = 2) {
+    return Math.abs(n - m) <= 10 ** -precision;
   }
 
   onSplitChange() {
